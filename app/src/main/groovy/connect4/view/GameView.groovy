@@ -1,35 +1,40 @@
 package connect4.view
 
-import connect4.model.Game
+import connect4.controller.GoodbyeController
+import connect4.controller.PlayController
+import connect4.controller.ResumeController
+import connect4.controller.StartController
 
-class GameView {
+class GameView implements View {
     private StartView startView
     private PlayView playView
     private ResumeView resumeView
     private GoodbyeView goodbyeView
-    private Game game
 
-    GameView(Game game) {
-        this.game = game
-        this.startView = new StartView(this.game)
-        this.playView = new PlayView(this.game)
-        this.resumeView = new ResumeView(this.game)
-        this.goodbyeView = new GoodbyeView(this.game)
+    GameView() {
+        this.startView = new StartView()
+        this.playView = new PlayView()
+        this.resumeView = new ResumeView()
+        this.goodbyeView = new GoodbyeView()
     }
 
-    void start() {
-        this.startView.show()
+    @Override
+    void start(StartController startController) {
+        this.startView.show(startController)
     }
 
-    void play() {
-        this.playView.interact()
+    @Override
+    void play(PlayController playController) {
+        this.playView.interact(playController)
     }
 
-    boolean resume() {
-        return this.resumeView.resume()
+    @Override
+    void goodbye(GoodbyeController goodbyeController) {
+        this.goodbyeView.show(goodbyeController)
     }
 
-    void goodbye() {
-        this.goodbyeView.show()
+    @Override
+    boolean resume(ResumeController resumeController) {
+        return this.resumeView.resume(resumeController)
     }
 }

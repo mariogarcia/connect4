@@ -1,9 +1,6 @@
 package connect4.view
 
-import groovy.transform.InheritConstructors
-
-@InheritConstructors
-class GreetingsView extends ConsoleView {
+class GreetingsView {
     static final String BANNER = """
   _____                       __      ____
  / ___/__  ___  ___  ___ ____/ /_____/ / /
@@ -11,7 +8,7 @@ class GreetingsView extends ConsoleView {
 \\___/\\___/_//_/_//_/\\__/\\__/\\__/     /_/  
 """
 
-    void interact() {
-        this.renderer.show(BANNER)
+    void show() {
+        ConsoleRenderer.instance.show(BANNER)
     }
 }

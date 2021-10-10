@@ -1,27 +1,40 @@
 package connect4
 
-import connect4.model.Game
+import connect4.controller.Controller
+import connect4.controller.GoodbyeController
+import connect4.controller.Logic
+import connect4.controller.PlayController
+import connect4.controller.ResumeController
+import connect4.controller.StartController
 import connect4.view.GameView
+import connect4.view.View
 
 class Connect4 {
-    private Game game
-    private GameView gameView
+    private View view
+    private Logic logic
 
     Connect4() {
-        this.game = new Game()
-        this.gameView = new GameView(this.game)
+        this.view = new GameView()
+        this.logic = new Logic()
     }
 
-    void start() {
+    void play() {
+        Controller controller
         do {
-            this.gameView.start()
-            this.gameView.play()
-        } while (this.gameView.resume())
-
-        this.gameView.goodbye()
+            controller = logic.controller
+            if (controller instanceof StartController) {
+                this.view.start((StartController) controller)
+            } else if (controller instanceof PlayController) {
+                this.view.play((PlayController) controller)
+            } else if (controller instanceof ResumeController) {
+                this.view.resume((ResumeController) controller)
+            } else {
+                this.view.goodbye((GoodbyeController) controller)
+            }
+        } while (logic.controller)
     }
 
     static void main(String[] args) {
-        new Connect4().start()
+        new Connect4().play()
     }
 }

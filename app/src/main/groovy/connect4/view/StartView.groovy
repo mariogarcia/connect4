@@ -1,20 +1,20 @@
 package connect4.view
 
-import connect4.model.Game
+import connect4.controller.StartController
 
-class StartView extends ConsoleView {
+class StartView  {
     BoardView boardView
     GreetingsView greetingsView
 
-    StartView(Game game) {
-        super(game)
-        this.boardView = new BoardView(this.game)
-        this.greetingsView = new GreetingsView(this.game)
+    StartView() {
+        this.boardView = new BoardView()
+        this.greetingsView = new GreetingsView()
     }
 
-    void show() {
-        this.game.reset()
-        this.greetingsView.interact()
-        this.boardView.show()
+    void show(StartController startController) {
+        startController.reset()
+        this.greetingsView.show()
+        this.boardView.show(startController)
+        startController.nextState()
     }
 }

@@ -1,11 +1,11 @@
 package connect4.view
 
+import connect4.controller.GoodbyeController
 import connect4.i18n.Messages
-import groovy.transform.InheritConstructors
 
-@InheritConstructors
-class GoodbyeView extends ConsoleView {
-    void show() {
-        this.renderer.show(Messages.GOOD_BYE)
+class GoodbyeView {
+    void show(GoodbyeController goodbyeController) {
+        ConsoleRenderer.instance.show(Messages.GOOD_BYE)
+        goodbyeController.nextState()
     }
 }

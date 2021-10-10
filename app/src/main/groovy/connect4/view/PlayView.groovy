@@ -1,32 +1,33 @@
 package connect4.view
 
+import connect4.controller.PlayController
 import connect4.i18n.Messages
 import connect4.model.Coordinate
-import connect4.model.Game
 
-class PlayView extends ConsoleView {
+class PlayView {
     private BoardView boardView
 
-    PlayView(Game game) {
-        super(game)
-        this.boardView = new BoardView(game)
+    PlayView() {
+        this.boardView = new BoardView()
     }
 
-    void interact() {
+    void interact(PlayController playController) {
         do {
-            this.game.playWithCoordinate(this.coordinateFromUser)
-            this.boardView.show()
-            this.game.togglePlayer()
-        } while (!this.game.isConnect4())
+            playController.playWithCoordinate(this.getCoordinateFromUser(playController))
+            this.boardView.show(playController)
+            playController.togglePlayer()
+        } while (!playController.isConnect4())
+
+        playController.nextState()
     }
 
-    private Coordinate getCoordinateFromUser() {
-        String question = Messages.NEXT_MOVE_QUESTION.format(this.game.currentColor)
+    private Coordinate getCoordinateFromUser(PlayController playController) {
+        String question = Messages.NEXT_MOVE_QUESTION.format(playController.currentColor)
         Coordinate coordinate
 
         do {
-            coordinate = this.renderer.ask(question, new CoordinateMapper())
-        } while (!this.game.isValidCoordinate(coordinate))
+            coordinate = ConsoleRenderer.instance.askCoordinate(question)
+        } while (!playController.isValidCoordinate(coordinate))
 
         return coordinate
     }

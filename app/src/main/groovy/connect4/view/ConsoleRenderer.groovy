@@ -1,17 +1,19 @@
 package connect4.view
 
-class ConsoleRenderer implements Renderer {
-    @Override
+import connect4.model.Coordinate
+import connect4.model.NullCoordinate
+import org.codehaus.groovy.runtime.StringGroovyMethods
+
+@Singleton
+class ConsoleRenderer {
     void show(String message) {
         println message
     }
 
-    @Override
     void show(Object object) {
         this.show(object.toString())
     }
 
-    @Override
     boolean askBoolean(String message) {
         Scanner scanner = new Scanner(System.in)
         this.show("$message [y/n]")
@@ -26,10 +28,22 @@ class ConsoleRenderer implements Renderer {
         return response == "y"
     }
 
-    @Override
-    def <T> T ask(String message, InputMapper<T> mapper) {
+    Coordinate askCoordinate(String message) {
         Scanner scanner = new Scanner(System.in)
         this.show(message)
-        return mapper.fromString(scanner.nextLine())
+        return this.fromString(scanner.nextLine())
+    }
+
+    private Coordinate fromString(String input) {
+        List<Integer> rowCol = input
+                .split(",")
+                .findAll(StringGroovyMethods::isNumber)
+                .collect(Integer::parseInt)
+
+        if (rowCol.size() == 2) {
+            return new Coordinate(rowCol.first(), rowCol.last())
+        }
+
+        return new NullCoordinate()
     }
 }
