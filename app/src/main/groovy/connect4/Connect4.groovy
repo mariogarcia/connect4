@@ -17,6 +17,8 @@ class Connect4 {
             this.gameView.start()
             this.gameView.play()
         } while (this.gameView.resume())
+
+        this.gameView.goodbye()
     }
 
     static void main(String[] args) {

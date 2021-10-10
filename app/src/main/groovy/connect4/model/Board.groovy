@@ -1,8 +1,5 @@
 package connect4.model
 
-import java.util.stream.Collectors
-import java.util.stream.Stream
-
 class Board {
     private static final Integer NUMBER_OF_ROWS = 7
     private static final Integer NUMBER_OF_COLUMNS = 6
@@ -29,7 +26,7 @@ class Board {
     }
 
     static boolean isWithinBounds(Coordinate coordinate) {
-        return coordinate.row <= NUMBER_OF_ROWS && coordinate.column <= NUMBER_OF_COLUMNS
+        return coordinate.row < NUMBER_OF_ROWS && coordinate.column < NUMBER_OF_COLUMNS
     }
 
     Board fillCell(Color color, Coordinate coordinate) {

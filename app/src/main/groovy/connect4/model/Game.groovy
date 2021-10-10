@@ -18,8 +18,8 @@ class Game {
         return this.turn.isConnect4()
     }
 
-    Player getCurrentPlayer() {
-        return this.turn.currentPlayer
+    Color getCurrentColor() {
+        return this.turn.currentPlayerColor
     }
 
     void playWithCoordinate(Coordinate nextMove) {

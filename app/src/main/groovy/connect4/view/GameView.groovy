@@ -26,10 +26,10 @@ class GameView {
     }
 
     boolean resume() {
-        boolean resume = this.resumeView.resume()
-        if (!resume) {
-            this.goodbyeView.show()
-        }
-        return resume
+        return this.resumeView.resume()
+    }
+
+    void goodbye() {
+        this.goodbyeView.show()
     }
 }

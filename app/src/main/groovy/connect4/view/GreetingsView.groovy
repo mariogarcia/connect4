@@ -1,8 +1,8 @@
 package connect4.view
 
-import connect4.model.Game
-import connect4.i18n.Messages
+import groovy.transform.InheritConstructors
 
+@InheritConstructors
 class GreetingsView extends ConsoleView {
     static final String BANNER = """
   _____                       __      ____
@@ -11,11 +11,7 @@ class GreetingsView extends ConsoleView {
 \\___/\\___/_//_/_//_/\\__/\\__/\\__/     /_/  
 """
 
-    GreetingsView(Game game) {
-        super(game)
-    }
-
     void interact() {
-        this.renderer.writeln(BANNER)
+        this.renderer.show(BANNER)
     }
 }

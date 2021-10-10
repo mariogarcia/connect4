@@ -3,7 +3,7 @@ package connect4.model
 class Turn {
     private static final int NUMBER_OF_PLAYERS = 2
 
-    private List<Player> players
+    private List<Color> players
     private Board board
     private boolean firstPlayerTurn
 
@@ -17,7 +17,7 @@ class Turn {
     }
 
     void reset() {
-        this.players = [new Player(Color.RED), new Player(Color.BLACK)]
+        this.players = [Color.RED, Color.BLACK]
         this.board.reset()
         this.firstPlayerTurn = true
     }
@@ -31,14 +31,14 @@ class Turn {
     }
 
     void playWithCoordinate(Coordinate coordinate) {
-        this.board.fillCell(currentPlayer.color, coordinate)
+        this.board.fillCell(currentPlayerColor, coordinate)
     }
 
     void togglePlayer() {
         this.firstPlayerTurn = !this.firstPlayerTurn
     }
 
-    Player getCurrentPlayer() {
+    Color getCurrentPlayerColor() {
         return this.firstPlayerTurn ? this.players.first() : this.players.last()
     }
 

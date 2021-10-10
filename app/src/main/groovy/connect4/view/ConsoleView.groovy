@@ -2,7 +2,7 @@ package connect4.view
 
 import connect4.model.Game
 
-abstract class ConsoleView extends WithGameView{
+abstract class ConsoleView extends WithGameView {
     ConsoleView(Game game) {
         super(game)
     }

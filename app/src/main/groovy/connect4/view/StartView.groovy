@@ -15,6 +15,6 @@ class StartView extends ConsoleView {
     void show() {
         this.game.reset()
         this.greetingsView.interact()
-        this.boardView.interact()
+        this.boardView.show()
     }
 }

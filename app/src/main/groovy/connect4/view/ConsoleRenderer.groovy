@@ -2,19 +2,19 @@ package connect4.view
 
 class ConsoleRenderer implements Renderer {
     @Override
-    void writeln(String message) {
+    void show(String message) {
         println message
     }
 
     @Override
-    void writeln(Object object) {
-        this.writeln(object.toString())
+    void show(Object object) {
+        this.show(object.toString())
     }
 
     @Override
     boolean askBoolean(String message) {
         Scanner scanner = new Scanner(System.in)
-        this.writeln("$message [y/n]")
+        this.show("$message [y/n]")
         String response
         boolean isCorrect
 
@@ -29,7 +29,7 @@ class ConsoleRenderer implements Renderer {
     @Override
     def <T> T ask(String message, InputMapper<T> mapper) {
         Scanner scanner = new Scanner(System.in)
-        this.writeln(message)
+        this.show(message)
         return mapper.fromString(scanner.nextLine())
     }
 }

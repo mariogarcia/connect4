@@ -1,8 +1,8 @@
 package connect4.view
 
 interface Renderer {
-    void writeln(String message)
-    void writeln(Object object)
+    void show(String message)
+    void show(Object object)
 
     boolean askBoolean(String message)
     public <T> T ask(String message, InputMapper<T> mapper)

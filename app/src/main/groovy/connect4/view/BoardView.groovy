@@ -1,20 +1,21 @@
 package connect4.view
 
 import connect4.model.Color
-import connect4.model.Game
+import groovy.transform.InheritConstructors
 
+@InheritConstructors
 class BoardView extends ConsoleView {
-    BoardView(Game game) {
-        super(game)
+    void show() {
+        this.showSeparator()
+        this.game.boardSnapshot.each(this::showRow)
+        this.showSeparator()
     }
 
-    void interact() {
-        this.renderer.writeln("=================================================")
-        this.game.boardSnapshot.each {
-            this.renderer.writeln(it.collect { "$it\t"})
-        }
-        this.renderer.writeln("=================================================")
+    private void showRow(Color[] row) {
+        this.renderer.show(row.collect { color -> "$color\t" })
+    }
 
-        this.renderer.writeln("")
+    private void showSeparator() {
+        this.renderer.show("=================================================")
     }
 }

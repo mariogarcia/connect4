@@ -17,7 +17,7 @@ enum Messages {
         return this.message
     }
 
-    String format(String... params) {
+    String format(Object... params) {
         return String.format(this.message, params)
     }
 }
