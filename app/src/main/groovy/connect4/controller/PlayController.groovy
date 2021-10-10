@@ -26,4 +26,9 @@ class PlayController extends Controller {
     Color getCurrentColor() {
         return this.game.currentColor
     }
+
+    @Override
+    void accept(ControllersVisitor controllersVisitor) {
+        controllersVisitor.visit(this)
+    }
 }

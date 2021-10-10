@@ -1,8 +1,6 @@
 package connect4.model
 
 class Turn {
-    private static final int NUMBER_OF_PLAYERS = 2
-
     private List<Color> players
     private Board board
     private boolean firstPlayerTurn

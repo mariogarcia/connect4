@@ -16,17 +16,17 @@ class GameView implements View {
     }
 
     @Override
-    void start(StartController startController) {
+    void visit(StartController startController) {
         this.startView.show(startController)
     }
 
     @Override
-    void play(PlayController playController) {
+    void visit(PlayController playController) {
         this.playView.interact(playController)
     }
 
     @Override
-    boolean resume(ResumeController resumeController) {
+    boolean visit(ResumeController resumeController) {
         return this.resumeView.resume(resumeController)
     }
 }
