@@ -1,4 +1,4 @@
-package connect4.i18n
+package connect4.view
 
 enum Messages {
     GOOD_BYE("Bye bye, see u next time!"),

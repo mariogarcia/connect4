@@ -1,7 +1,6 @@
 package connect4.view
 
 import connect4.controller.ResumeController
-import connect4.i18n.Messages
 
 class ResumeView {
     boolean resume(ResumeController resumeController) {

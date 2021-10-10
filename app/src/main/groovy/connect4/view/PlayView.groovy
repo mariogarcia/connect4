@@ -1,7 +1,6 @@
 package connect4.view
 
 import connect4.controller.PlayController
-import connect4.i18n.Messages
 import connect4.model.Coordinate
 
 class PlayView {
