@@ -15,8 +15,7 @@ class Logic {
         this.controllers = [
             (StateValue.START): new StartController(this.game, this.state),
             (StateValue.PLAY): new PlayController(this.game, this.state),
-            (StateValue.RESUME): new ResumeController(this.game, this.state),
-            (StateValue.GOODBYE): new GoodbyeController(this.game, this.state)
+            (StateValue.RESUME): new ResumeController(this.game, this.state)
         ]
     }
 

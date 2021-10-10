@@ -4,16 +4,14 @@ import connect4.controller.StartController
 
 class StartView  {
     BoardView boardView
-    GreetingsView greetingsView
 
     StartView() {
         this.boardView = new BoardView()
-        this.greetingsView = new GreetingsView()
     }
 
     void show(StartController startController) {
         startController.reset()
-        this.greetingsView.show()
+        ConsoleRenderer.instance.show(Messages.GREETINGS)
         this.boardView.show(startController)
         startController.nextState()
     }

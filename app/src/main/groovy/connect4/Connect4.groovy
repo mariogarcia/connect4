@@ -1,7 +1,6 @@
 package connect4
 
 import connect4.controller.Controller
-import connect4.controller.GoodbyeController
 import connect4.controller.Logic
 import connect4.controller.PlayController
 import connect4.controller.ResumeController
@@ -26,10 +25,8 @@ class Connect4 {
                 this.view.start((StartController) controller)
             } else if (controller instanceof PlayController) {
                 this.view.play((PlayController) controller)
-            } else if (controller instanceof ResumeController) {
-                this.view.resume((ResumeController) controller)
             } else {
-                this.view.goodbye((GoodbyeController) controller)
+                this.view.resume((ResumeController) controller)
             }
         } while (logic.controller)
     }

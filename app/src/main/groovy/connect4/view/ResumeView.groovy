@@ -9,6 +9,7 @@ class ResumeView {
         if (startAllOver) {
             resumeController.reset()
         } else {
+            ConsoleRenderer.instance.show(Messages.GOOD_BYE)
             resumeController.nextState()
         }
 
