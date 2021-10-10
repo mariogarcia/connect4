@@ -9,51 +9,51 @@ import connect4.model.Coordinate
 import spock.lang.Specification
 
 class Connect4Test extends Specification {
-    def "connect4 in row"() {
-        setup:
+    def "check win in row"() {
+        setup: "a winning horizontal sequence"
         def board = new Board()
             .fillCell(Color.BLACK, new Coordinate(0, 0))
             .fillCell(Color.BLACK, new Coordinate(0, 1))
             .fillCell(Color.BLACK, new Coordinate(0, 2))
             .fillCell(Color.BLACK, new Coordinate(0, 3))
 
-        expect:
+        expect: "is a win"
         board.isConnect4()
     }
 
-    def "connect4 in column"() {
-        setup:
+    def "check win in column"() {
+        setup: "a winning vertical sequence"
         def board = new Board()
             .fillCell(Color.BLACK, new Coordinate(1, 0))
             .fillCell(Color.BLACK, new Coordinate(2, 0))
             .fillCell(Color.BLACK, new Coordinate(3, 0))
             .fillCell(Color.BLACK, new Coordinate(4, 0))
 
-        expect:
+        expect: "is a win"
         board.isConnect4()
     }
 
-    def "connect4 in main diagonal"() {
-        setup:
+    def "check win in main diagonal"() {
+        setup: "a winning in the main diagonal"
         def board = new Board()
             .fillCell(Color.BLACK, new Coordinate(0, 0))
             .fillCell(Color.BLACK, new Coordinate(1, 1))
             .fillCell(Color.BLACK, new Coordinate(2, 2))
             .fillCell(Color.BLACK, new Coordinate(3, 3))
 
-        expect:
+        expect: "is a win"
         board.isConnect4()
     }
 
-    def "connect4 in inverse diagonal"() {
-        setup:
+    def "check win in inverse diagonal"() {
+        setup: "a winning in the inverse diagonal"
         def board = new Board()
             .fillCell(Color.BLACK, new Coordinate(1, 3))
             .fillCell(Color.BLACK, new Coordinate(2, 2))
             .fillCell(Color.BLACK, new Coordinate(3, 1))
             .fillCell(Color.BLACK, new Coordinate(4, 0))
 
-        expect:
+        expect: "is a win"
         board.isConnect4()
     }
 }
