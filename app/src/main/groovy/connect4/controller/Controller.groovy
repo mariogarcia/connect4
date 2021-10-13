@@ -1,6 +1,5 @@
 package connect4.controller
 
-import connect4.model.Color
 import connect4.model.Game
 import connect4.model.State
 import groovy.transform.TupleConstructor
@@ -9,10 +8,6 @@ import groovy.transform.TupleConstructor
 abstract class Controller {
     Game game
     State state
-
-    Color[][] getBoardSnapshot() {
-        return this.game.boardSnapshot
-    }
 
     void nextState() {
         this.state.next()

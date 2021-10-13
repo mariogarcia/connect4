@@ -5,7 +5,7 @@ import connect4.model.Coordinate
 import groovy.transform.InheritConstructors
 
 @InheritConstructors
-class PlayController extends Controller {
+class PlayController extends ControllerWithBoardSnapshot {
 
     void playWithCoordinate(Coordinate coordinate) {
         this.game.playWithCoordinate(coordinate)

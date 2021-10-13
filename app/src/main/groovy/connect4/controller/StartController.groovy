@@ -3,7 +3,7 @@ package connect4.controller
 import groovy.transform.InheritConstructors
 
 @InheritConstructors
-class StartController extends Controller {
+class StartController extends ControllerWithBoardSnapshot {
     void reset() {
         this.game.reset()
     }

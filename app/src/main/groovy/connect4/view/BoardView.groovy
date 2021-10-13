@@ -1,10 +1,10 @@
 package connect4.view
 
-import connect4.controller.Controller
+import connect4.controller.ControllerWithBoardSnapshot
 import connect4.model.Color
 
 class BoardView  {
-    void show(Controller controller) {
+    void show(ControllerWithBoardSnapshot controller) {
         this.showSeparator()
         controller.boardSnapshot.each(this::showRow)
         this.showSeparator()
