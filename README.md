@@ -22,9 +22,11 @@ se puede extender/modificar la forma en la que se muestran los datos sin modific
   complicar el codigo de la clase Logic. El polimorfismo es una pieza clave en la aplicacion de esta
   tecnica.
 
-- **Todas las fases**: En cada evolutivo se han eliminado clases perezosas, o bien porque se ha descubierto que
+- **Todas las fases**: En cada evolutivo se han eliminado **clases perezosas**, o bien porque se ha descubierto que
 su responsabilidad estaba tambien incluida en otra, o bien porque al evolucionar el codigo
 eran redundantes. Tambien se han eliminado abstracciones innecesarias, sobre todo YAGNI, ya que por ejemplo se crearon
 abstracciones para poder utilizar otro tipo de tecnologias de vistas, pero pense que no estaba seguro
 de que fuera a llegar a implementarlo por lo que decidi no incluir esa posibilidad hasta que no fuera
-una realidad.
+una realidad. Tambien me he dado cuenta de que tenia **herencia rechazada** en algunos sitios como en la clase
+  abstracta Controller, tenia un metodo que solo se usaba por dos de sus clases hijas y lo que 
+  hice fue crear una clase abstracta intermedia solo para esos dos casos.
