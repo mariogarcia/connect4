@@ -2,6 +2,7 @@ package connect4.view
 
 import connect4.controller.PlayController
 import connect4.model.Coordinate
+import connect4.model.Player
 
 class PlayView {
     private BoardView boardView
@@ -12,7 +13,8 @@ class PlayView {
 
     void interact(PlayController playController) {
         do {
-            PlayInputView inputView = PlayInputViewFactory.instance.getByPlayer(playController.currentPlayer)
+            Player player = playController.currentPlayer
+            PlayInputView inputView = PlayInputViewFactory.instance.getViewByPlayer(player)
             Coordinate coordinate = inputView.getCoordinate(playController)
 
             playController.playWithCoordinate(coordinate)
