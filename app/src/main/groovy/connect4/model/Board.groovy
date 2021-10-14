@@ -14,11 +14,11 @@ class Board {
     }
 
     void reset() {
-        [(0..<restrictions.rows), (0..<restrictions.columns)]
-            .combinations()
-            .each { Integer row, Integer col ->
+        (0..<restrictions.rows).each { Integer row ->
+            (0..<restrictions.columns).each { Integer col ->
                 this.fillCell(Color.NULL, new Coordinate(row, col))
             }
+        }
     }
 
     boolean isValidCoordinate(Coordinate coordinate) {
