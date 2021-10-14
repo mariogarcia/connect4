@@ -5,7 +5,12 @@ class Game {
     private Board board
 
     Game() {
-        this.board = new Board()
+        this.board = new BoardBuilder()
+            .withRows(7)
+            .withColumns(6)
+            .withRequiredWinningMoves(4)
+            .build()
+
         this.turn = new Turn(this.board)
     }
 

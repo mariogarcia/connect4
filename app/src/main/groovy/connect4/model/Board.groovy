@@ -1,37 +1,33 @@
 package connect4.model
 
 class Board {
-    private static final Integer NUMBER_OF_ROWS = 7
-    private static final Integer NUMBER_OF_COLUMNS = 6
-    private static final Range<Integer> ROWS = (0..<NUMBER_OF_ROWS)
-    private static final Range<Integer> ROWS_MINUS_THREE = (0..(NUMBER_OF_COLUMNS - 3))
-    private static final Range<Integer> COLS = (0..<NUMBER_OF_COLUMNS)
-    private static final Range<Integer> COLS_MINUS_THREE = (0..(NUMBER_OF_COLUMNS - 3))
+    private Color[][] board
+    private Coordinate last
+    private BoardRestrictions restrictions
 
-    private Color[][] board = new Color[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS]
-    private Color last = Color.NULL
+    Board(BoardRestrictions restrictions) {
+        this.restrictions = restrictions
+        this.last = new NullCoordinate()
+        this.board = new Color[restrictions.rows][restrictions.columns]
 
-    Board() {
         this.reset()
     }
 
     void reset() {
-        [ROWS, COLS].combinations().each { Integer row, Integer col ->
-            this.fillCell(Color.NULL, new Coordinate(row, col))
-        }
+        [(0..<restrictions.rows), (0..<restrictions.columns)]
+            .combinations()
+            .each { Integer row, Integer col ->
+                this.fillCell(Color.NULL, new Coordinate(row, col))
+            }
     }
 
     boolean isEmptyAt(Coordinate coordinate) {
         return this.board[coordinate.row][coordinate.column] == Color.NULL
     }
 
-    static boolean isWithinBounds(Coordinate coordinate) {
-        return coordinate.row < NUMBER_OF_ROWS && coordinate.column < NUMBER_OF_COLUMNS
-    }
-
     Board fillCell(Color color, Coordinate coordinate) {
-        this.last = color
-        this.board[coordinate.row][coordinate.column] = this.last
+        this.last = coordinate
+        this.board[coordinate.row][coordinate.column] = color
         return this
     }
 
@@ -40,30 +36,27 @@ class Board {
     }
 
     boolean isConnect4() {
-        return this.isInRows() || this.isInCols() || this.isInDiagonal() || this.isInInvertedDiagonal()
+        return Coordinate.Directions
+            .values()
+            .collect {this.last.getNeighbors(this.restrictions.howManyToWin, it) }
+            .findAll(this::havingCoordinatesWithinBounds)
+            .collect(this::getColorsFromCoordinates)
+            .any(Board::hasAllCoordinatesWithSameColor)
     }
 
-    private boolean isInRows() {
-        return [COLS_MINUS_THREE, ROWS].combinations().any { int c, int r ->
-            return board[r][c] == last && board[r][c+1] == last && board[r][c+2] == last && board[r][c+3] == last
-        }
+    private boolean havingCoordinatesWithinBounds(List<Coordinate> coordinates) {
+        return coordinates.every(this::isWithinBounds)
     }
 
-    private boolean isInCols() {
-        return [COLS, ROWS_MINUS_THREE].combinations().any { int c, int r ->
-            return board[r][c] == last && board[r+1][c] == last && board[r+2][c] == last && board[r+3][c] == last
-        }
+    boolean isWithinBounds(Coordinate coordinate) {
+        return coordinate.row < this.restrictions.rows && coordinate.column < this.restrictions.columns
     }
 
-    private boolean isInDiagonal() {
-        return [COLS_MINUS_THREE, ROWS_MINUS_THREE].combinations().any { int c, int r ->
-            return board[r][c] == last && board[r+1][c+1] == last && board[r+2][c+2] == last && board[r+3][c+3] == last
-        }
+    private List<Color> getColorsFromCoordinates(List<Coordinate> coordinates) {
+        return coordinates.collect {board[it.row][it.column] }
     }
 
-    private boolean isInInvertedDiagonal() {
-        return [COLS_MINUS_THREE, ROWS].combinations().any { int c, int r ->
-            return board[r][c] == last && board[r-1][c+1] == last && board[r-2][c+2] == last && board[r-3][c+3] == last
-        }
+    private static boolean hasAllCoordinatesWithSameColor(List<Color> colors) {
+        return colors.toUnique().size() == 1
     }
 }
