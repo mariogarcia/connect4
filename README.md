@@ -15,7 +15,7 @@ se puede extender/modificar la forma en la que se muestran los datos sin modific
   
 - **Fase MVC**: Una vez generadas las vistas se ha ido un paso mas alla para quitar la responsabilidad 
   de conocer el negocio a las vistas y delegarlo en los controladores, reduciendo el acoplamiento entre vista
-  y dominio. Esto de nuevo mejora la cohesion en las vistas. No obstante
+  y dominio. Esto de nuevo mejora la cohesion en las vistas.
   
 - **Fase MVC(double-dispatching)**: Haciendo uso de la tecnica del doble despacho, volvemos a 
   aplicar el principio open/close haciendo que sea mas facil agregar nuevos controladores sin
