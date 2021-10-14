@@ -1,5 +1,7 @@
 package connect4.model
 
+import connect4.model.Coordinate.Directions
+
 class Board {
     private Color[][] board
     private Coordinate lastMove
@@ -40,15 +42,19 @@ class Board {
     }
 
     boolean isConnect4() {
-        return Coordinate.Directions
+        return Directions
             .values()
-            .collect {this.lastMove.getNeighbors(this.restrictions.howManyToWin, it) }
-            .findAll(this::havingCoordinatesWithinBounds)
+            .collect(this::getNeighborsFromLastMoveAndDirection)
+            .findAll(this::checkAllCoordinatesAreWithinBounds)
             .collect(this::getColorsFromCoordinates)
             .any(Board::hasAllColorsTheSame)
     }
 
-    private boolean havingCoordinatesWithinBounds(List<Coordinate> coordinates) {
+    private List<Coordinate> getNeighborsFromLastMoveAndDirection(Directions direction) {
+        return this.lastMove.getNeighbors(this.restrictions.howManyToWin, direction)
+    }
+
+    private boolean checkAllCoordinatesAreWithinBounds(List<Coordinate> coordinates) {
         return coordinates.every(this::isWithinBounds)
     }
 
