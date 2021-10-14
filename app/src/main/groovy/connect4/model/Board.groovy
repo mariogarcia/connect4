@@ -21,7 +21,11 @@ class Board {
             }
     }
 
-    boolean isEmptyAt(Coordinate coordinate) {
+    boolean isValidCoordinate(Coordinate coordinate) {
+        return this.isEmptyAt(coordinate) && this.isWithinBounds(coordinate)
+    }
+
+    private boolean isEmptyAt(Coordinate coordinate) {
         return this.board[coordinate.row][coordinate.column] == Color.NULL
     }
 
@@ -48,7 +52,7 @@ class Board {
         return coordinates.every(this::isWithinBounds)
     }
 
-    boolean isWithinBounds(Coordinate coordinate) {
+    private boolean isWithinBounds(Coordinate coordinate) {
         return coordinate.row < this.restrictions.rows && coordinate.column < this.restrictions.columns
     }
 

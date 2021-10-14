@@ -21,7 +21,7 @@ class Turn {
     }
 
     boolean isValidCoordinate(Coordinate coordinate) {
-        return this.board.isWithinBounds(coordinate) && this.board.isEmptyAt(coordinate)
+        return this.board.isValidCoordinate(coordinate)
     }
 
     boolean isValidCoordinate(NullCoordinate coordinate) {
