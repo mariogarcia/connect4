@@ -2,12 +2,12 @@ package connect4.model
 
 class Board {
     private Color[][] board
-    private Coordinate last
+    private Coordinate lastMove
     private BoardRestrictions restrictions
 
     Board(BoardRestrictions restrictions) {
         this.restrictions = restrictions
-        this.last = new NullCoordinate()
+        this.lastMove = new NullCoordinate()
         this.board = new Color[restrictions.rows][restrictions.columns]
 
         this.reset()
@@ -30,7 +30,7 @@ class Board {
     }
 
     Board fillCell(Color color, Coordinate coordinate) {
-        this.last = coordinate
+        this.lastMove = coordinate
         this.board[coordinate.row][coordinate.column] = color
         return this
     }
@@ -42,10 +42,10 @@ class Board {
     boolean isConnect4() {
         return Coordinate.Directions
             .values()
-            .collect {this.last.getNeighbors(this.restrictions.howManyToWin, it) }
+            .collect {this.lastMove.getNeighbors(this.restrictions.howManyToWin, it) }
             .findAll(this::havingCoordinatesWithinBounds)
             .collect(this::getColorsFromCoordinates)
-            .any(Board::hasAllCoordinatesWithSameColor)
+            .any(Board::hasAllColorsTheSame)
     }
 
     private boolean havingCoordinatesWithinBounds(List<Coordinate> coordinates) {
@@ -60,7 +60,7 @@ class Board {
         return coordinates.collect {board[it.row][it.column] }
     }
 
-    private static boolean hasAllCoordinatesWithSameColor(List<Color> colors) {
+    private static boolean hasAllColorsTheSame(List<Color> colors) {
         return colors.toUnique().size() == 1
     }
 }

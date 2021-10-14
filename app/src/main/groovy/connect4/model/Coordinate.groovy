@@ -2,10 +2,8 @@ package connect4.model
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import groovy.transform.TupleConstructor
 
 @ToString
-@TupleConstructor
 @EqualsAndHashCode
 class Coordinate {
 
@@ -20,11 +18,16 @@ class Coordinate {
         DIAGONAL_INVERTED_DOWN
     }
 
-    Integer row
-    Integer column
+    private final Integer row
+    private final Integer column
+
+    Coordinate(Integer row, Integer column) {
+        this.row = row
+        this.column = column
+    }
 
     List<Coordinate> getNeighbors(Integer howMany, Directions direction) {
-        return (0..<howMany).collect {applyDelta(it, direction)}
+        return (0..<howMany).collect {applyDelta(it, direction) }
     }
 
     private Coordinate applyDelta(Integer index, Directions directions) {
