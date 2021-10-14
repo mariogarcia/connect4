@@ -11,6 +11,7 @@ class PlayInputAIView extends PlayInputView {
         do {
             String question = Messages.NEXT_MOVE_QUESTION.format(controller.currentPlayer.color)
             ConsoleRenderer.instance.show(question)
+            ConsoleRenderer.instance.showLine()
             ConsoleRenderer.instance.show(Messages.nextAISentence())
             Thread.sleep(5000)
 

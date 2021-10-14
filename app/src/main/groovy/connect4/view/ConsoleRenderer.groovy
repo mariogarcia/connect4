@@ -19,6 +19,10 @@ class ConsoleRenderer {
         println message
     }
 
+    void showLine() {
+        this.show("")
+    }
+
     void show(Object object) {
         this.show(object.toString())
     }
