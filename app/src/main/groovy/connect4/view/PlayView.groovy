@@ -12,22 +12,14 @@ class PlayView {
 
     void interact(PlayController playController) {
         do {
-            playController.playWithCoordinate(this.getCoordinateFromUser(playController))
+            PlayInputView inputView = PlayInputViewFactory.instance.getByPlayer(playController.currentPlayer)
+            Coordinate coordinate = inputView.getCoordinate(playController)
+
+            playController.playWithCoordinate(coordinate)
             this.boardView.show(playController)
             playController.togglePlayer()
         } while (!playController.isConnect4())
 
         playController.nextState()
-    }
-
-    private Coordinate getCoordinateFromUser(PlayController playController) {
-        String question = Messages.NEXT_MOVE_QUESTION.format(playController.currentColor)
-        Coordinate coordinate
-
-        do {
-            coordinate = ConsoleRenderer.instance.askCoordinate(question)
-        } while (!playController.isValidCoordinate(coordinate))
-
-        return coordinate
     }
 }

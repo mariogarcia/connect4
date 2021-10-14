@@ -6,13 +6,13 @@ import connect4.controller.StartController
 
 class GameView implements View {
     private StartView startView
-    private PlayView playView
     private ResumeView resumeView
+    private PlayView playView
 
     GameView() {
         this.startView = new StartView()
-        this.playView = new PlayView()
         this.resumeView = new ResumeView()
+        this.playView = new PlayView()
     }
 
     @Override
@@ -22,7 +22,7 @@ class GameView implements View {
 
     @Override
     void visit(PlayController playController) {
-        this.playView.interact(playController)
+        playView.interact(playController)
     }
 
     @Override

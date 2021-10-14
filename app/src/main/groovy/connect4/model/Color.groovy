@@ -4,4 +4,8 @@ enum Color {
     RED,
     BLACK,
     NULL
+
+    boolean isNull() {
+        return this == NULL
+    }
 }

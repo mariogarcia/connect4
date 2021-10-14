@@ -1,7 +1,7 @@
 package connect4.model
 
 class Turn {
-    private List<Color> players
+    private List<Player> players
     private Board board
     private boolean firstPlayerTurn
 
@@ -9,13 +9,12 @@ class Turn {
         assert board != null, "board must not be null"
 
         this.board = board
-        this.players = []
         this.firstPlayerTurn = true
         this.reset()
     }
 
     void reset() {
-        this.players = [Color.RED, Color.BLACK]
+        this.players = [new HumanPlayer(Color.RED), new AIPlayer(Color.BLACK)]
         this.board.reset()
         this.firstPlayerTurn = true
     }
@@ -29,14 +28,14 @@ class Turn {
     }
 
     void playWithCoordinate(Coordinate coordinate) {
-        this.board.fillCell(currentPlayerColor, coordinate)
+        this.board.fillCell(currentPlayer, coordinate)
     }
 
     void togglePlayer() {
         this.firstPlayerTurn = !this.firstPlayerTurn
     }
 
-    Color getCurrentPlayerColor() {
+    Player getCurrentPlayer() {
         return this.firstPlayerTurn ? this.players.first() : this.players.last()
     }
 

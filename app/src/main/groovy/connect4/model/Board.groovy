@@ -18,7 +18,7 @@ class Board {
     void reset() {
         (0..<restrictions.rows).each { Integer row ->
             (0..<restrictions.columns).each { Integer col ->
-                this.fillCell(Color.NULL, new Coordinate(row, col))
+                this.fillCell(new NullPlayer(), new Coordinate(row, col))
             }
         }
     }
@@ -28,12 +28,12 @@ class Board {
     }
 
     private boolean isEmptyAt(Coordinate coordinate) {
-        return this.board[coordinate.row][coordinate.column] == Color.NULL
+        return this.board[coordinate.row][coordinate.column].isNull()
     }
 
-    Board fillCell(Color color, Coordinate coordinate) {
+    Board fillCell(Player player, Coordinate coordinate) {
         this.lastMove = coordinate
-        this.board[coordinate.row][coordinate.column] = color
+        this.board[coordinate.row][coordinate.column] = player.color
         return this
     }
 
