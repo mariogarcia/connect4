@@ -63,7 +63,9 @@ class Board {
     }
 
     private List<Color> getColorsFromCoordinates(List<Coordinate> coordinates) {
-        return coordinates.collect {board[it.row][it.column] }
+        return coordinates.collect { Coordinate coordinate ->
+            board[coordinate.row][coordinate.column]
+        }
     }
 
     private static boolean hasAllColorsTheSame(List<Color> colors) {

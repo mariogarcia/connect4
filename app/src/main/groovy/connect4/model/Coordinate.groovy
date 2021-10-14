@@ -27,7 +27,9 @@ class Coordinate {
     }
 
     List<Coordinate> getNeighbors(Integer howMany, Directions direction) {
-        return (0..<howMany).collect {applyDelta(it, direction) }
+        return (0..<howMany).collect { Integer delta ->
+            applyDelta(delta, direction)
+        }
     }
 
     private Coordinate applyDelta(Integer index, Directions directions) {
