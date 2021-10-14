@@ -33,7 +33,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'connect4.App'
+    mainClass = 'connect4.Connect4'
 }
 
 tasks.named('test') {
