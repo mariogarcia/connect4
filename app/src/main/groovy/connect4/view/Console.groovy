@@ -4,17 +4,8 @@ import connect4.model.Coordinate
 import connect4.model.NullCoordinate
 import org.codehaus.groovy.runtime.StringGroovyMethods
 
-class ConsoleRenderer {
-    private static ConsoleRenderer INSTANCE
-    private ConsoleRenderer() {}
-
-    static ConsoleRenderer getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ConsoleRenderer()
-        }
-        return INSTANCE
-    }
-
+@Singleton(lazy = true)
+class Console {
     void show(String message) {
         println message
     }

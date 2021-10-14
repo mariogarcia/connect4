@@ -10,7 +10,7 @@ class PlayInputHumanView extends PlayInputView {
         Coordinate coordinate
 
         do {
-            coordinate = ConsoleRenderer.instance.askCoordinate(question)
+            coordinate = Console.instance.askCoordinate(question)
         } while (!controller.isValidCoordinate(coordinate))
 
         return coordinate

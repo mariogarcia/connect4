@@ -11,10 +11,10 @@ class BoardView  {
     }
 
     private void showRow(Color[] row) {
-        ConsoleRenderer.instance.show(row.collect { color -> "$color\t" })
+        Console.instance.show(row.collect { color -> "$color\t" })
     }
 
     private void showSeparator() {
-        ConsoleRenderer.instance.show("=================================================")
+        Console.instance.show("=================================================")
     }
 }

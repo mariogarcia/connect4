@@ -11,7 +11,7 @@ class StartView  {
 
     void show(StartController startController) {
         startController.reset()
-        ConsoleRenderer.instance.show(Messages.GREETINGS)
+        Console.instance.show(Messages.GREETINGS)
         this.boardView.show(startController)
         startController.nextState()
     }
