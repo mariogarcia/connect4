@@ -8,4 +8,8 @@ enum Color {
     boolean isNull() {
         return this == NULL
     }
+
+    String toString() {
+        return this.isNull() ? "-" : this.name()
+    }
 }

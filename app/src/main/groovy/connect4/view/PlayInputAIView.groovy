@@ -10,10 +10,9 @@ class PlayInputAIView extends PlayInputView {
 
         do {
             String question = Messages.NEXT_MOVE_QUESTION.format(controller.currentPlayer.color)
-            Console.instance.show(question)
-            Console.instance.showLine()
-            Console.instance.show(Messages.nextAISentence())
-            Thread.sleep(5000)
+
+            Console.instance.writeAndWait(question, 2)
+            Console.instance.writeLnAndWait(Messages.nextAISentence(), 5)
 
             coordinate = controller.getRandomCoordinate()
         } while (!controller.isValidCoordinate(coordinate))

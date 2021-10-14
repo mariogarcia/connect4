@@ -5,11 +5,6 @@ import connect4.model.Coordinate
 import connect4.model.Player
 
 class PlayView {
-    private BoardView boardView
-
-    PlayView() {
-        this.boardView = new BoardView()
-    }
 
     void interact(PlayController playController) {
         do {
@@ -18,7 +13,10 @@ class PlayView {
             Coordinate coordinate = inputView.getCoordinate(playController)
 
             playController.playWithCoordinate(coordinate)
-            this.boardView.show(playController)
+
+            Console.instance.clear()
+            Console.instance.showTable(playController.boardSnapshot)
+
             playController.togglePlayer()
         } while (!playController.isConnect4())
 
