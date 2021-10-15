@@ -8,14 +8,21 @@ import groovy.transform.ToString
 class Coordinate {
 
     static enum Directions {
-        HORIZONTAL_LEFT,
-        HORIZONTAL_RIGHT,
-        VERTICAL_UP,
-        VERTICAL_DOWN,
-        DIAGONAL_MAIN_UP,
-        DIAGONAL_MAIN_DOWN,
-        DIAGONAL_INVERTED_UP,
-        DIAGONAL_INVERTED_DOWN
+        HORIZONTAL_LEFT(0, 1),
+        HORIZONTAL_RIGHT(0, -1),
+        VERTICAL_UP(-1, 0),
+        VERTICAL_DOWN(1, 0),
+        DIAGONAL_MAIN_UP(-1, -1),
+        DIAGONAL_MAIN_DOWN(1, 1),
+        DIAGONAL_INVERTED_UP(-1, 1),
+        DIAGONAL_INVERTED_DOWN(1, -1)
+
+        private Integer alpha, beta
+
+        Directions(Integer alpha, Integer beta) {
+            this.alpha = alpha
+            this.beta = beta
+        }
     }
 
     private final Integer row
@@ -33,15 +40,6 @@ class Coordinate {
     }
 
     private Coordinate applyDelta(Integer index, Directions directions) {
-        switch(directions) {
-            case Directions.HORIZONTAL_RIGHT:        return new Coordinate(this.row, this.column + index)
-            case Directions.HORIZONTAL_LEFT:         return new Coordinate(this.row, this.column - index)
-            case Directions.VERTICAL_UP:             return new Coordinate(this.row - index, this.column)
-            case Directions.VERTICAL_DOWN:           return new Coordinate(this.row + index, this.column)
-            case Directions.DIAGONAL_MAIN_UP:        return new Coordinate(this.row - index, this.column - index)
-            case Directions.DIAGONAL_MAIN_DOWN:      return new Coordinate(this.row + index, this.column + index)
-            case Directions.DIAGONAL_INVERTED_UP:    return new Coordinate(this.row - index, this.column + index)
-            case Directions.DIAGONAL_INVERTED_DOWN:  return new Coordinate(this.row + index, this.column - index)
-        }
+        return new Coordinate(this.row + (index * directions.alpha), this.column + (index * directions.beta))
     }
 }
