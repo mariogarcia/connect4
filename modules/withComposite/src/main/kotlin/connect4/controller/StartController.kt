@@ -1,11 +1,8 @@
 package connect4.controller
 
-import connect4.model.Game
-import connect4.model.State
-
-class StartController(private val game: Game, private val state: State): BoardController(game, state) {
+class StartController(private val session: Session): BoardController(session) {
     fun reset() {
-        this.game.reset()
+        this.session.reset()
     }
 
     override fun accept(visitor: ControllersVisitor) {

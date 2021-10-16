@@ -1,11 +1,8 @@
 package connect4.controller
 
-import connect4.model.Game
-import connect4.model.State
-
-abstract class Controller(private val game: Game, private val state: State) {
+abstract class Controller(private val session: Session) {
     fun nextState() {
-        this.state.next()
+        this.session.next()
     }
 
     abstract fun accept(visitor: ControllersVisitor)

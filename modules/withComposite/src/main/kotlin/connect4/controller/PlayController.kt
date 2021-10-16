@@ -2,21 +2,21 @@ package connect4.controller
 
 import connect4.model.*
 
-class PlayController(private val game: Game, private val state: State): BoardController(game, state) {
+class PlayController(private val session: Session): BoardController(session) {
     fun playWithCoordinate(coordinate: Coordinate) {
-        this.game.playWithCoordinate(coordinate)
+        this.session.playWithCoordinate(coordinate)
     }
 
     fun togglePlayer() {
-        this.game.togglePlayer()
+        this.session.togglePlayer()
     }
 
     fun isConnect4(): Boolean {
-        return this.game.isConnect4()
+        return this.session.isConnect4()
     }
 
     fun isValidCoordinate(coordinate: Coordinate): Boolean {
-        return this.game.isValidCoordinate(coordinate)
+        return this.session.isValidCoordinate(coordinate)
     }
 
     fun getRandomCoordinate(): Coordinate {
@@ -34,7 +34,7 @@ class PlayController(private val game: Game, private val state: State): BoardCon
     }
 
     fun getCurrentPlayer(): Player {
-        return this.game.getCurrentPlayer()
+        return this.session.getCurrentPlayer()
     }
 
     override fun accept(visitor: ControllersVisitor) {

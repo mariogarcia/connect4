@@ -1,12 +1,8 @@
 package connect4.controller
 
-import connect4.model.Game
-import connect4.model.State
-
-class ResumeController(private val game: Game, private val state: State): Controller(game, state) {
+class ResumeController(private val session: Session): Controller(session) {
     fun reset() {
-        this.game.reset()
-        this.state.reset()
+        this.session.reset()
     }
     override fun accept(visitor: ControllersVisitor) {
         visitor.visit(this)
