@@ -1,0 +1,50 @@
+plugins {
+    id 'org.kordamp.gradle.groovy-project' version '0.46.0'
+    id 'org.kordamp.gradle.jacoco' version '0.46.0'
+    id 'org.kordamp.gradle.codenarc' version '0.46.0'
+}
+
+ext {
+    mavenUsername = findProperty("maven.username")
+    mavenPassword = findProperty("maven.password")
+    shouldRelease = "${findProperty('release')}".toBoolean()
+}
+
+config {
+    release = false
+
+    info {
+        name          = 'Connect4'
+        vendor        = 'nobody'
+        description   = 'Connect4 Game Implementations'
+        inceptionYear = '2021'
+        tags          = ['oop', 'design', 'patterns']
+
+        links {
+            website      = 'https://github.com/joecool/sample'
+            issueTracker = 'https://github.com/joecool/sample/issues'
+            scm          = 'https://github.com/joecool/sample.git'
+        }
+    }
+
+    licensing {
+        enabled = false
+        licenses {
+            license {
+                id = 'Apache-2.0'
+            }
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = findProperty('sourceCompatibility')
+        targetCompatibility = findProperty('targetCompatibility')
+        options.encoding    = 'UTF-8'
+    }
+}
