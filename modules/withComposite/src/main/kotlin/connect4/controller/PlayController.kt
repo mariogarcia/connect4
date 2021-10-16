@@ -1,43 +1,46 @@
 package connect4.controller
 
-import connect4.model.*
+import connect4.controller.play.ActionController
+import connect4.controller.play.RedoController
+import connect4.controller.play.UndoController
+import connect4.model.Color
+import connect4.model.Coordinate
+import connect4.model.Player
 
-class PlayController(private val session: Session): BoardController(session) {
+class PlayController(private val session: Session): Controller(session), VisitorAwareController {
+    private val actionController = ActionController(session)
+    private val redoController = RedoController(session)
+    private val undoController = UndoController(session)
+
     fun playWithCoordinate(coordinate: Coordinate) {
-        this.session.playWithCoordinate(coordinate)
+        this.actionController.playWithCoordinate(coordinate)
     }
 
     fun togglePlayer() {
-        this.session.togglePlayer()
+        this.actionController.togglePlayer()
     }
 
     fun isConnect4(): Boolean {
-        return this.session.isConnect4()
+        return this.actionController.isConnect4()
     }
 
     fun isValidCoordinate(coordinate: Coordinate): Boolean {
-        return this.session.isValidCoordinate(coordinate)
+        return this.actionController.isValidCoordinate(coordinate)
     }
 
     fun getRandomCoordinate(): Coordinate {
-        val coordinates: MutableList<Coordinate> = mutableListOf()
-
-        this.getBoardSnapshot().forEachIndexed { rowIndex: Int, row: Array<Color> ->
-            row.forEachIndexed { columnIndex: Int, entry: Color ->
-                if (entry.isNull()) {
-                    coordinates.add(Coordinate(rowIndex, columnIndex))
-                }
-            }
-        }
-
-        return coordinates.shuffled().first()
+        return this.actionController.getRandomCoordinate()
     }
 
     fun getCurrentPlayer(): Player {
-        return this.session.getCurrentPlayer()
+        return this.actionController.getCurrentPlayer()
     }
 
     override fun accept(visitor: ControllersVisitor) {
         visitor.visit(this)
+    }
+
+    fun getBoardSnapshot(): List<Array<Color>> {
+        return this.session.getBoardSnapshot()
     }
 }

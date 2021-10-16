@@ -1,6 +1,6 @@
 package connect4.controller
 
-class ResumeController(private val session: Session): Controller(session) {
+class ResumeController(private val session: Session): Controller(session), VisitorAwareController {
     fun reset() {
         this.session.reset()
     }
