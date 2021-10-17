@@ -35,6 +35,10 @@ class Turn(private val board: Board): PlayerVisitor<Player> {
         this.activePlayer = getNextPlayer(this.activePlayer)
     }
 
+    fun getPlayers(): List<Player> {
+        return this.players
+    }
+
     override fun visit(aiPlayer: AIPlayer): Player {
         return this.players.first()
     }

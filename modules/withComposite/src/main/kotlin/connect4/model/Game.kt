@@ -34,7 +34,7 @@ class Game {
     }
 
     fun createSnapshot(): GameSnapshot {
-        return GameSnapshot(this.board, this.getCurrentPlayer())
+        return GameSnapshot(this.board, this.turn)
     }
 
     fun setSnapshot(snapshot: GameSnapshot) {

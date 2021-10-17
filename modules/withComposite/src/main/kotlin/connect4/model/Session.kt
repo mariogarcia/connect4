@@ -3,7 +3,7 @@ package connect4.model
 class Session {
     private val game = Game()
     private val state = State()
-    private val logger = GameLogger(game)
+    private val registry = GameRegistry(game)
 
     fun getStateValue(): StateValue {
         return this.state.value
@@ -24,9 +24,7 @@ class Session {
 
     fun playWithCoordinate(coordinate: Coordinate) {
         this.game.playWithCoordinate(coordinate)
-    }
-
-    fun togglePlayer() {
+        this.registry.register()
         this.game.togglePlayer()
     }
 
@@ -43,22 +41,18 @@ class Session {
     }
 
     fun redo() {
-        this.logger.redo()
+        this.registry.redo()
     }
 
     fun isRedoable(): Boolean {
-        return this.logger.isRedoable()
+        return this.registry.isRedoable()
     }
 
     fun undo() {
-        this.logger.undo()
+        this.registry.undo()
     }
 
     fun isUndoable(): Boolean {
-        return this.logger.isUndoable()
-    }
-
-    fun register() {
-        this.logger.register()
+        return this.registry.isUndoable()
     }
 }

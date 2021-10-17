@@ -11,10 +11,6 @@ class ActionController(private val session: Session): Controller(session) {
         this.session.playWithCoordinate(coordinate)
     }
 
-    fun togglePlayer() {
-        this.session.togglePlayer()
-    }
-
     fun isConnect4(): Boolean {
         return this.session.isConnect4()
     }
@@ -43,9 +39,5 @@ class ActionController(private val session: Session): Controller(session) {
 
     fun getBoardSnapshot(): List<Array<Color>> {
         return this.session.getBoardSnapshot()
-    }
-
-    fun register() {
-        return this.session.register()
     }
 }

@@ -44,4 +44,8 @@ class Board(private val restrictions: BoardRestrictions) {
             .map { coordinates -> coordinates.map { this.board[it.row][it.col] } }
             .any { colors -> colors.toSet().size == 1 }
     }
+
+    fun getRestrictions(): BoardRestrictions {
+        return BoardRestrictions(this.restrictions.rows, this.restrictions.cols, this.restrictions.movesToWing)
+    }
 }

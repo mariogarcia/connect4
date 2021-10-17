@@ -12,9 +12,6 @@ class ActionCommand(controller: PlayController): Command(Messages.COMMAND_ACTION
         val coordinate = inputView.getCoordinate(this.controller)
 
         this.controller.playWithCoordinate(coordinate)
-        this.controller.register()
-        this.controller.togglePlayer()
-
         this.showBoard()
     }
 }
