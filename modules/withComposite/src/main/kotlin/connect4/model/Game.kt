@@ -1,8 +1,8 @@
 package connect4.model
 
 class Game {
-    private val board = BoardBuilder().build()
-    private val turn = Turn(board)
+    private var board = BoardBuilder().build()
+    private var turn = Turn(board)
 
     fun reset() {
         this.turn.reset()
@@ -31,5 +31,15 @@ class Game {
 
     fun getBoardSnapshot(): List<Array<Color>>  {
         return this.board.getSnapshot()
+    }
+
+    fun createSnapshot(): GameSnapshot {
+        return GameSnapshot(this.board, this.getCurrentPlayer())
+    }
+
+    fun setSnapshot(snapshot: GameSnapshot) {
+        board = snapshot.getBoard()
+        turn = Turn(board)
+        turn.setActivePlayer(snapshot.getActivePlayer())
     }
 }

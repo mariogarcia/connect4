@@ -1,16 +1,22 @@
 package connect4.view
 
-import connect4.model.AIPlayer
-import connect4.model.HumanPlayer
-import connect4.model.Player
+import connect4.model.*
+import java.lang.Exception
 
-object PlayInputViewFactory {
+object PlayInputViewFactory: PlayerVisitor<PlayInputView> {
     fun getViewByPlayer(player: Player): PlayInputView {
-        // NO POLYMORPHISM BY OVERWRITING IN KOTLIN :(
-        return when(player) {
-            is HumanPlayer -> PlayInputHumanView()
-            is AIPlayer -> PlayInputAIView()
-            else -> PlayInputHumanView()
-        }
+        return player.accepts(this)
+    }
+
+    override fun visit(aiPlayer: AIPlayer): PlayInputView {
+        return PlayInputAIView()
+    }
+
+    override fun visit(humanPlayer: HumanPlayer): PlayInputView {
+        return PlayInputHumanView()
+    }
+
+    override fun visit(nullPlayer: NullPlayer): PlayInputView {
+        throw Exception("No PlayInputView exists for NullPlayer")
     }
 }

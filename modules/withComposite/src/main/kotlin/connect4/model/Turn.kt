@@ -1,13 +1,12 @@
 package connect4.model
 
-class Turn(private val board: Board) {
+class Turn(private val board: Board): PlayerVisitor<Player> {
     private var players: List<Player> = listOf(HumanPlayer(Color.RED), AIPlayer(Color.BLUE))
-    private var firstPlayerTurn: Boolean = false
+    private var activePlayer: Player = players.first()
 
     fun reset() {
         this.players = listOf(HumanPlayer(Color.RED), AIPlayer(Color.BLUE))
         this.board.reset()
-        this.firstPlayerTurn = true
     }
 
     fun isValidCoordinate(coordinate: Coordinate): Boolean {
@@ -21,10 +20,30 @@ class Turn(private val board: Board) {
     }
 
     fun getCurrentPlayer(): Player {
-        return if (this.firstPlayerTurn) this.players.first() else this.players.last()
+        return this.activePlayer
+    }
+
+    private fun getNextPlayer(player: Player): Player {
+        return player.accepts(this)
+    }
+
+    fun setActivePlayer(player: Player) {
+        this.activePlayer = player
     }
 
     fun togglePlayer() {
-        this.firstPlayerTurn = !this.firstPlayerTurn
+        this.activePlayer = getNextPlayer(this.activePlayer)
+    }
+
+    override fun visit(aiPlayer: AIPlayer): Player {
+        return this.players.first()
+    }
+
+    override fun visit(humanPlayer: HumanPlayer): Player {
+        return this.players.last()
+    }
+
+    override fun visit(nullPlayer: NullPlayer): Player {
+        throw Exception("No contender exists for a NullPlayer")
     }
 }

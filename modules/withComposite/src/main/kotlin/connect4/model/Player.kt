@@ -1,4 +1,5 @@
 package connect4.model
 
-open class Player(val color: Color) {
+abstract class Player(val color: Color) {
+    abstract fun <T> accepts(visitor: PlayerVisitor<T>): T
 }
