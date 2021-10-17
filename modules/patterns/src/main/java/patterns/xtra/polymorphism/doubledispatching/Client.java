@@ -1,4 +1,4 @@
-package patterns.xtra.polymorphism;
+package patterns.xtra.polymorphism.doubledispatching;
 
 public class Client {
     public static void main(String[] args) {

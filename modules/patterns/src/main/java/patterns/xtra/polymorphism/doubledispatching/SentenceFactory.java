@@ -1,4 +1,4 @@
-package patterns.xtra.polymorphism;
+package patterns.xtra.polymorphism.doubledispatching;
 
 final public class SentenceFactory implements PlayerVisitor{
     private static SentenceFactory INSTANCE;
