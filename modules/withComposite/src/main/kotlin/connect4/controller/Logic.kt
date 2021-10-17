@@ -1,5 +1,6 @@
 package connect4.controller
 
+import connect4.model.Session
 import connect4.model.StateValue
 
 class Logic {

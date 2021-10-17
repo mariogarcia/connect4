@@ -1,7 +1,9 @@
-package connect4.view
+package connect4.view.play
 
 import connect4.controller.PlayController
 import connect4.model.Coordinate
+import connect4.view.Console
+import connect4.view.Messages
 import connect4.view.Messages.Companion.format
 
 class PlayInputHumanView: PlayInputView {

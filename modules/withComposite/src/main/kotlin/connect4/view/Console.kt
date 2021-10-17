@@ -66,9 +66,15 @@ object Console {
         return response == "y"
     }
 
+    fun askInt(message: String): Int {
+        val scanner = Scanner(System.`in`)
+        this.write(message)
+        return scanner.nextInt()
+    }
+
     fun askCoordinate(message: String): Coordinate {
         val scanner = Scanner(System.`in`)
-        this.writeLn(message)
+        this.write(message)
         return this.fromString(scanner.nextLine())
     }
 

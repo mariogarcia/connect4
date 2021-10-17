@@ -31,11 +31,11 @@ class GameLogger(private val game: Game) {
         this.game.setSnapshot(this.snapshots[this.previous])
     }
 
-    private fun isUndoable(): Boolean {
+    fun isUndoable(): Boolean {
         return this.previous < this.snapshots.size
     }
 
-    private fun isRedoable(): Boolean {
+    fun isRedoable(): Boolean {
         return this.previous >= 1
     }
 }

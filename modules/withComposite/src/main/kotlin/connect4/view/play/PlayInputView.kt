@@ -1,4 +1,4 @@
-package connect4.view
+package connect4.view.play
 
 import connect4.controller.PlayController
 import connect4.model.Coordinate

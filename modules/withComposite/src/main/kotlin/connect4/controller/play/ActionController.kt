@@ -1,7 +1,7 @@
 package connect4.controller.play
 
 import connect4.controller.Controller
-import connect4.controller.Session
+import connect4.model.Session
 import connect4.model.Color
 import connect4.model.Coordinate
 import connect4.model.Player
@@ -39,5 +39,13 @@ class ActionController(private val session: Session): Controller(session) {
 
     fun getCurrentPlayer(): Player {
         return this.session.getCurrentPlayer()
+    }
+
+    fun getBoardSnapshot(): List<Array<Color>> {
+        return this.session.getBoardSnapshot()
+    }
+
+    fun register() {
+        return this.session.register()
     }
 }

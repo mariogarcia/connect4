@@ -19,7 +19,11 @@ enum class Messages(private val message: String) {
 """),
     NEXT_MOVE_QUESTION("Introduce a new move [%s]: "),
     NEW_GAME_QUESTION("Would you like to play another game ?"),
-    BAD_COORDINATE("Wrong position pal! Give me another one please");
+    MENU_OPTION_CHOOSE("----- Choose one option -----"),
+    COMMAND_ACTION("Keep playing"),
+    COMMAND_UNDO("Undo movement"),
+    COMMAND_REDO("Redo movement");
+
 
     companion object {
         fun Messages.format(vararg params: String): String {

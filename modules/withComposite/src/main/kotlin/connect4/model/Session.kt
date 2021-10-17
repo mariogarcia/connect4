@@ -1,10 +1,9 @@
-package connect4.controller
-
-import connect4.model.*
+package connect4.model
 
 class Session {
     private val game = Game()
     private val state = State()
+    private val logger = GameLogger(game)
 
     fun getStateValue(): StateValue {
         return this.state.value
@@ -41,5 +40,25 @@ class Session {
 
     fun getCurrentPlayer(): Player {
         return this.game.getCurrentPlayer()
+    }
+
+    fun redo() {
+        this.logger.redo()
+    }
+
+    fun isRedoable(): Boolean {
+        return this.logger.isRedoable()
+    }
+
+    fun undo() {
+        this.logger.undo()
+    }
+
+    fun isUndoable(): Boolean {
+        return this.logger.isUndoable()
+    }
+
+    fun register() {
+        this.logger.register()
     }
 }

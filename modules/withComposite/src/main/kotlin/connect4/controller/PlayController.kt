@@ -6,6 +6,7 @@ import connect4.controller.play.UndoController
 import connect4.model.Color
 import connect4.model.Coordinate
 import connect4.model.Player
+import connect4.model.Session
 
 class PlayController(private val session: Session): Controller(session), VisitorAwareController {
     private val actionController = ActionController(session)
@@ -40,7 +41,27 @@ class PlayController(private val session: Session): Controller(session), Visitor
         visitor.visit(this)
     }
 
+    fun register() {
+        return this.actionController.register()
+    }
+
     fun getBoardSnapshot(): List<Array<Color>> {
-        return this.session.getBoardSnapshot()
+        return this.actionController.getBoardSnapshot()
+    }
+
+    fun redo() {
+        this.redoController.redo()
+    }
+
+    fun isRedoable(): Boolean {
+        return this.redoController.isRedoable()
+    }
+
+    fun undo() {
+        return this.undoController.undo()
+    }
+
+    fun isUndoable(): Boolean {
+        return this.undoController.isUndoable()
     }
 }
