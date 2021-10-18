@@ -2,7 +2,7 @@ package patterns.xtra.polymorphism.doubledispatching;
 
 public class HumanPlayer implements Player {
     @Override
-    public String visit(PlayerVisitor visitor) {
-        return visitor.getSentence(this);
+    public <T> T accepts(PlayerVisitor<T> visitor) {
+        return visitor.visit(this);
     }
 }

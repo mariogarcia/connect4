@@ -1,6 +1,6 @@
 package patterns.xtra.polymorphism.doubledispatching;
 
-final public class SentenceFactory implements PlayerVisitor{
+final public class SentenceFactory implements PlayerVisitor<String> {
     private static SentenceFactory INSTANCE;
     private SentenceFactory() { }
 
@@ -13,14 +13,16 @@ final public class SentenceFactory implements PlayerVisitor{
     }
 
     public String getSentenceFrom(Player player) {
-        return player.visit(this);
+        return player.accepts(this);
     }
 
-    public String getSentence(AIPlayer aiPlayer) {
+    @Override
+    public String visit(AIPlayer aiPlayer) {
         return "kk";
     }
 
-    public String getSentence(HumanPlayer humanPlayer) {
+    @Override
+    public String visit(HumanPlayer humanPlayer) {
         return "oo";
     }
 }

@@ -1,5 +1,9 @@
-package patterns.creational.prototype
+package patterns.creational
 
+import patterns.creational.prototype.Board
+import patterns.creational.prototype.Coordinate
+import patterns.creational.prototype.HumanPlayer
+import patterns.creational.prototype.Player
 import spock.lang.Specification
 
 class PrototypeSpec extends Specification {

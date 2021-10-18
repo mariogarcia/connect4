@@ -1,7 +1,6 @@
 package patterns.xtra.polymorphism.doubledispatching;
 
-public interface PlayerVisitor {
-
-    String getSentence(AIPlayer aiPlayer);
-    String getSentence(HumanPlayer humanPlayer);
+public interface PlayerVisitor<T> {
+    T visit(AIPlayer aiPlayer);
+    T visit(HumanPlayer humanPlayer);
 }

@@ -19,8 +19,4 @@ public class SentenceFactory {
     String getSentenceFrom(HumanPlayer humanPlayer) {
         return "IM HUMAN";
     }
-
-    String getSentenceFrom(Player player) {
-        return "IM ME";
-    }
 }

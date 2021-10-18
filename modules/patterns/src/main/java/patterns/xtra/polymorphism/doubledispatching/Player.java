@@ -1,6 +1,5 @@
 package patterns.xtra.polymorphism.doubledispatching;
 
 public interface Player {
-
-    String visit(PlayerVisitor visitor);
+    <T> T accepts(PlayerVisitor<T> visitor);
 }
