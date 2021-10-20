@@ -26,6 +26,6 @@ abstract class Menu {
             error = !(0 until commands.size).contains(option)
         } while (error)
 
-        commands[option].execute()
+        commandsToShow[option].execute()
     }
 }
