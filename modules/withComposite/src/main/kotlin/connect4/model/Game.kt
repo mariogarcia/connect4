@@ -1,7 +1,7 @@
 package connect4.model
 
 class Game {
-    private var board = BoardBuilder().build()
+    private var board = Board(rows = 6, cols = 7, winningMoves = 4)
     private var turn = Turn(board)
 
     fun reset() {

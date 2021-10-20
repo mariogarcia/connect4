@@ -23,7 +23,7 @@ class ActionController(private val session: Session): Controller(session) {
 
         this.session.getBoardColors().forEachIndexed { rowIndex: Int, row: Array<Color> ->
             row.forEachIndexed { columnIndex: Int, entry: Color ->
-                if (entry.isNull()) {
+                if (entry == Color.NULL) {
                     coordinates.add(Coordinate(rowIndex, columnIndex))
                 }
             }

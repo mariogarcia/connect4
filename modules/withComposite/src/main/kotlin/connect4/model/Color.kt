@@ -1,9 +1,7 @@
 package connect4.model
 
-enum class Color: Nullable {
+enum class Color {
     RED,
     BLUE,
-    NULL {
-        override fun isNull(): Boolean = true
-    }
+    NULL
 }

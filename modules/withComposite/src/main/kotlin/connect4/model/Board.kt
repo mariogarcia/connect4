@@ -1,6 +1,6 @@
 package connect4.model
 
-class Board(private val restrictions: BoardRestrictions) {
+class Board(private val rows: Int, private val cols: Int, private val winningMoves: Int) {
     private val cells: MutableMap<Coordinate, Player> = mutableMapOf()
     private var lastMove: Coordinate = NullCoordinate()
 
@@ -9,22 +9,22 @@ class Board(private val restrictions: BoardRestrictions) {
     }
 
     fun reset() {
-        (0 until restrictions.rows).forEach { i ->
-            (0 until restrictions.cols).forEach { j ->
+        (0 until rows).forEach { i ->
+            (0 until cols).forEach { j ->
                 cells[Coordinate(i, j)] = AIPlayer(Color.NULL)
             }
         }
     }
 
     fun copy(): Board {
-        val boardCopy = Board(this.restrictions)
+        val boardCopy = Board(this.rows, this.cols, this.winningMoves)
         this.cells.forEach(boardCopy::fillCell)
         return boardCopy
     }
 
     fun getBoardColors(): List<Array<Color>> {
-        val colors: Array<Array<Color>> = Array(restrictions.rows) {
-            Array(restrictions.cols) {
+        val colors: Array<Array<Color>> = Array(rows) {
+            Array(cols) {
                 Color.NULL
             }
         }
@@ -50,8 +50,8 @@ class Board(private val restrictions: BoardRestrictions) {
     }
 
     private fun isWithinBounds(coordinate: Coordinate): Boolean {
-        val rowIsCorrect = coordinate.row >= 0 && coordinate.row < this.restrictions.rows
-        val colIsCorrect = coordinate.col >= 0 && coordinate.col < this.restrictions.cols
+        val rowIsCorrect = coordinate.row >= 0 && coordinate.row < this.rows
+        val colIsCorrect = coordinate.col >= 0 && coordinate.col < this.cols
 
         return rowIsCorrect && colIsCorrect
     }
@@ -59,7 +59,7 @@ class Board(private val restrictions: BoardRestrictions) {
     fun isConnect4(): Boolean {
         return Coordinate.Direction
             .values()
-            .map { direction -> this.lastMove.getNeighbors(this.restrictions.movesToWing, direction) }
+            .map { direction -> this.lastMove.getNeighbors(this.winningMoves, direction) }
             .filter { coordinates -> coordinates.all(this::isWithinBounds) }
             .map { coordinates -> coordinates.map { this.cells[it] } }
             .any { colors -> colors.toSet().size == 1 }
