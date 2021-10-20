@@ -11,7 +11,7 @@ class Board(private val restrictions: BoardRestrictions) {
     fun reset() {
         (0 until restrictions.rows).forEach { i ->
             (0 until restrictions.cols).forEach { j ->
-                cells[Coordinate(i, j)] = NullPlayer()
+                cells[Coordinate(i, j)] = AIPlayer(Color.NULL)
             }
         }
     }
