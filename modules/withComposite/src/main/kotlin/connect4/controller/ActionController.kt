@@ -1,6 +1,5 @@
-package connect4.controller.play
+package connect4.controller
 
-import connect4.controller.Controller
 import connect4.model.Session
 import connect4.model.Color
 import connect4.model.Coordinate
@@ -22,7 +21,7 @@ class ActionController(private val session: Session): Controller(session) {
     fun getRandomCoordinate(): Coordinate {
         val coordinates: MutableList<Coordinate> = mutableListOf()
 
-        this.session.getBoardSnapshot().forEachIndexed { rowIndex: Int, row: Array<Color> ->
+        this.session.getBoardColors().forEachIndexed { rowIndex: Int, row: Array<Color> ->
             row.forEachIndexed { columnIndex: Int, entry: Color ->
                 if (entry.isNull()) {
                     coordinates.add(Coordinate(rowIndex, columnIndex))
@@ -37,7 +36,7 @@ class ActionController(private val session: Session): Controller(session) {
         return this.session.getCurrentPlayer()
     }
 
-    fun getBoardSnapshot(): List<Array<Color>> {
-        return this.session.getBoardSnapshot()
+    fun getBoardColors(): List<Array<Color>> {
+        return this.session.getBoardColors()
     }
 }

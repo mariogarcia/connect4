@@ -1,4 +1,4 @@
-package connect4.view.play
+package connect4.view
 
 import connect4.controller.PlayController
 

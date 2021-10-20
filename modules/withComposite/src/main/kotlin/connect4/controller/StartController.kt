@@ -8,8 +8,8 @@ class StartController(private val session: Session): Controller(session), Visito
         this.session.reset()
     }
 
-    fun getBoardSnapshot(): List<Array<Color>> {
-        return this.session.getBoardSnapshot()
+    fun getBoardColors(): List<Array<Color>> {
+        return this.session.getBoardColors()
     }
 
     override fun accept(visitor: ControllersVisitor) {

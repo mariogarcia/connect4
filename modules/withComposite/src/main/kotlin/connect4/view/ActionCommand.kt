@@ -1,7 +1,6 @@
-package connect4.view.play
+package connect4.view
 
 import connect4.controller.PlayController
-import connect4.view.Messages
 
 class ActionCommand(controller: PlayController): Command(Messages.COMMAND_ACTION.toString(), controller) {
     override fun isActive(): Boolean = true

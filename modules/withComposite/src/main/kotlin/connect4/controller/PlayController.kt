@@ -1,8 +1,5 @@
 package connect4.controller
 
-import connect4.controller.play.ActionController
-import connect4.controller.play.RedoController
-import connect4.controller.play.UndoController
 import connect4.model.Color
 import connect4.model.Coordinate
 import connect4.model.Player
@@ -38,7 +35,7 @@ class PlayController(private val session: Session): Controller(session), Visitor
     }
 
     fun getBoardSnapshot(): List<Array<Color>> {
-        return this.actionController.getBoardSnapshot()
+        return this.actionController.getBoardColors()
     }
 
     fun redo() {

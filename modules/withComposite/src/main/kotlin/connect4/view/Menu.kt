@@ -1,7 +1,4 @@
-package connect4.view.play
-
-import connect4.view.Console
-import connect4.view.Messages
+package connect4.view
 
 
 abstract class Menu {

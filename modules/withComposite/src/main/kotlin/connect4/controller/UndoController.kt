@@ -1,4 +1,4 @@
-package connect4.controller.play
+package connect4.controller
 
 import connect4.controller.Controller
 import connect4.model.Session

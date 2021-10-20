@@ -8,7 +8,7 @@ class StartView {
 
         Console.clear()
         Console.writeLn(Messages.GREETINGS)
-        Console.showTable(startController.getBoardSnapshot())
+        Console.showTable(startController.getBoardColors())
 
         startController.nextState()
     }

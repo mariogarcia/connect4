@@ -19,4 +19,12 @@ open class Coordinate(val row: Int, val col: Int) {
     private fun applyDelta(index: Int, direction: Direction): Coordinate {
         return Coordinate(this.row + (index * direction.alpha), this.col + (index * direction.beta))
     }
+
+    override fun equals(other: Any?): Boolean {
+        return (other is Coordinate) && row == other.row && col == other.col
+    }
+
+    override fun hashCode(): Int = this.toString().hashCode()
+
+    override fun toString(): String = "coordinate(row(${row}), col(${col}))"
 }

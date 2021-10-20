@@ -13,8 +13,8 @@ class Session {
         this.state.next()
     }
 
-    fun getBoardSnapshot(): List<Array<Color>> {
-        return this.game.getBoardSnapshot()
+    fun getBoardColors(): List<Array<Color>> {
+        return this.game.getBoardColors()
     }
 
     fun reset() {

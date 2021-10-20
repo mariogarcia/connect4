@@ -1,7 +1,6 @@
-package connect4.view.play
+package connect4.view
 
 import connect4.controller.PlayController
-import connect4.view.Messages
 
 class UndoCommand(controller: PlayController): Command(Messages.COMMAND_UNDO.toString(), controller) {
     override fun isActive(): Boolean = this.controller.isUndoable()
