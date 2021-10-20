@@ -5,7 +5,7 @@ import connect4.model.Coordinate
 import connect4.model.Player
 import connect4.model.Session
 
-class PlayController(private val session: Session): Controller(session), VisitorAwareController {
+class PlayController(session: Session): Controller(session), VisitorAwareController {
     private val actionController = ActionController(session)
     private val redoController = RedoController(session)
     private val undoController = UndoController(session)
