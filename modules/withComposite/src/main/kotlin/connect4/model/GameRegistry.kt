@@ -4,9 +4,8 @@ class GameRegistry(private val game: Game) {
     private val snapshots: MutableList<GameSnapshot> = mutableListOf()
     private var step: Int = 0
 
-    fun reset() {
-        this.snapshots.clear()
-        this.snapshots.add(0, this.game.createSnapshot())
+    init {
+        this.register()
     }
 
     fun register() {
@@ -16,25 +15,21 @@ class GameRegistry(private val game: Game) {
 
     fun undo() {
         assert(this.isUndoable()) { "error due to user trying to undo an undoable state of the game" }
-        this.game.setSnapshot(this.getListIterator().previous())
         this.step--
+        this.game.setSnapshot(this.snapshots[step - 1])
     }
 
     fun redo() {
         assert(this.isRedoable()) { "error due to user trying to redo a not redo-able state of the game" }
-        this.game.setSnapshot(this.getListIterator().next())
+        this.game.setSnapshot(this.snapshots[step])
         this.step++
     }
 
     fun isUndoable(): Boolean {
-        return this.getListIterator().hasPrevious()
+        return this.step > 1
     }
 
     fun isRedoable(): Boolean {
-        return this.getListIterator().hasNext()
-    }
-
-    private fun getListIterator(): ListIterator<GameSnapshot> {
-        return snapshots.listIterator(this.step)
+        return this.step < this.snapshots.size
     }
 }
