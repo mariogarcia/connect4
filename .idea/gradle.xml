@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/modules/patterns" />
             <option value="$PROJECT_DIR$/modules/withComposite" />
             <option value="$PROJECT_DIR$/modules/withDoubleDispatching" />
+            <option value="$PROJECT_DIR$/modules/withProxy" />
           </set>
         </option>
       </GradleProjectSettings>
