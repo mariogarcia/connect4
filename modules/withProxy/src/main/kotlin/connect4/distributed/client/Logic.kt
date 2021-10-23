@@ -6,4 +6,8 @@ class Logic: CommonLogic(Session()) {
     init {
 
     }
+
+    fun close() {
+
+    }
 }

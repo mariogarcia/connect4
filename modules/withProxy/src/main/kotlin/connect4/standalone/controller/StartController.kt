@@ -1,6 +1,7 @@
-package connect4.standalone
+package connect4.standalone.controller
 
 import connect4.common.model.Color
+import connect4.standalone.model.Session
 import connect4.common.controller.StartController as CommonStartController
 
 class StartController(private val session: Session): CommonStartController(session) {

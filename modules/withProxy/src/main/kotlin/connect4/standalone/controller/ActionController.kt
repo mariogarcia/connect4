@@ -1,9 +1,10 @@
-package connect4.standalone
+package connect4.standalone.controller
 
 import connect4.common.controller.Controller
 import connect4.common.model.Color
 import connect4.common.model.Coordinate
 import connect4.common.model.Player
+import connect4.standalone.model.Session
 
 class ActionController(private val session: Session): Controller(session) {
     fun playWithCoordinate(coordinate: Coordinate) {

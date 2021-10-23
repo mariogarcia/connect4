@@ -1,4 +1,4 @@
-package connect4.standalone
+package connect4.standalone.model
 
 import connect4.common.model.*
 import connect4.common.model.Session as CommonSession
