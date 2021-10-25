@@ -1,11 +1,11 @@
 package connect4.model
 
 class Turn(private val board: Board) {
-    private var players: List<Player> = listOf(HumanPlayer(Color.RED), AIPlayer(Color.BLUE))
+    private var players: List<Player> = listOf(Player(Color.RED), Player(Color.BLUE))
     private var activePlayer: Player = players.first()
 
     fun reset() {
-        this.players = listOf(HumanPlayer(Color.RED), AIPlayer(Color.BLUE))
+        this.players = listOf(Player(Color.RED), Player(Color.BLUE))
         this.board.reset()
     }
 

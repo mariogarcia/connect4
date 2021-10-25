@@ -22,16 +22,6 @@ object Console {
         println(Ansi.ansi().render(message))
     }
 
-    fun writeAndWait(message: String, seconds: Long) {
-        this.write(message)
-        this.waitSeconds(seconds)
-    }
-
-    fun writeLnAndWait(message: String, seconds: Long) {
-        this.writeLn(message)
-        this.waitSeconds(seconds)
-    }
-
     private fun waitSeconds(seconds: Long) {
         Thread.sleep(seconds * 1000)
     }
@@ -64,12 +54,6 @@ object Console {
         } while(!isCorrect)
 
         return response == "y"
-    }
-
-    fun askInt(message: String): Int {
-        val scanner = Scanner(System.`in`)
-        this.write(message)
-        return scanner.nextInt()
     }
 
     fun askCoordinate(message: String): Coordinate {

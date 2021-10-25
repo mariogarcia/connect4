@@ -1,20 +1,21 @@
 package connect4
 
-import connect4.controller.Logic
-import connect4.controller.VisitorAwareController
-import connect4.view.GameView
-import connect4.view.View
+import connect4.controller.PlayController
+import connect4.controller.ResumeController
+import connect4.controller.StartController
+import connect4.model.Session
 
 class Connect4 {
-    var view: View = GameView()
-    var logic: Logic = Logic()
-
     fun play() {
-        var controller: VisitorAwareController?
+        val session = Session()
+        val startController = StartController(session)
+        val playController = PlayController(session)
+        val resumeController = ResumeController(session)
+
         do {
-            controller = logic.getController()
-            controller?.accept(this.view)
-        } while(controller != null)
+            startController.control()
+            playController.control()
+        } while (resumeController.control())
     }
 }
 

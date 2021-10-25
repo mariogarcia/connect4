@@ -1,56 +1,26 @@
 package connect4.controller
 
-import connect4.model.Color
 import connect4.model.Coordinate
-import connect4.model.Player
 import connect4.model.Session
+import connect4.view.ViewFactory
 
-class PlayController(session: Session): Controller(session), VisitorAwareController {
-    private val actionController = ActionController(session)
-    private val redoController = RedoController(session)
-    private val undoController = UndoController(session)
-
-    fun playWithCoordinate(coordinate: Coordinate) {
-        this.actionController.playWithCoordinate(coordinate)
+class PlayController(private val session: Session): Controller(session) {
+    fun control() {
+        do {
+            showBoard()
+            this.session.playWithCoordinate(this.getCoordinate())
+        } while (!this.session.isConnect4())
     }
 
-    fun isConnect4(): Boolean {
-        return this.actionController.isConnect4()
-    }
+    private fun getCoordinate(): Coordinate {
+        var coordinate: Coordinate
+        val playerView = ViewFactory.createPlayerView()
+        val player = this.session.getCurrentPlayer()
 
-    fun isValidCoordinate(coordinate: Coordinate): Boolean {
-        return this.actionController.isValidCoordinate(coordinate)
-    }
+        do {
+            coordinate = playerView.askForCoordinateToPlayer(player)
+        } while (!this.session.isValidCoordinate(coordinate))
 
-    fun getRandomCoordinate(): Coordinate {
-        return this.actionController.getRandomCoordinate()
-    }
-
-    fun getCurrentPlayer(): Player {
-        return this.actionController.getCurrentPlayer()
-    }
-
-    override fun accept(visitor: ControllersVisitor) {
-        visitor.visit(this)
-    }
-
-    fun getBoardSnapshot(): List<Array<Color>> {
-        return this.actionController.getBoardColors()
-    }
-
-    fun redo() {
-        this.redoController.redo()
-    }
-
-    fun isRedoable(): Boolean {
-        return this.redoController.isRedoable()
-    }
-
-    fun undo() {
-        return this.undoController.undo()
-    }
-
-    fun isUndoable(): Boolean {
-        return this.undoController.isUndoable()
+        return coordinate
     }
 }

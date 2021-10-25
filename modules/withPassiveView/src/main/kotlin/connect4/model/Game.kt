@@ -29,17 +29,7 @@ class Game {
         return this.turn.isValidCoordinate(coordinate)
     }
 
-    fun getBoardColors(): List<Array<Color>>  {
+    fun getBoardColors(): List<Array<Color>> {
         return this.board.getBoardColors()
-    }
-
-    fun createSnapshot(): GameSnapshot {
-        return GameSnapshot(this.board.copy(), this.turn.getCurrentPlayer())
-    }
-
-    fun setSnapshot(snapshot: GameSnapshot) {
-        this.board = snapshot.getBoard()
-        this.turn = Turn(this.board)
-        this.turn.setActivePlayer(snapshot.getActivePlayer())
     }
 }

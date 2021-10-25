@@ -1,18 +1,11 @@
 package connect4.controller
 
-import connect4.model.Color
 import connect4.model.Session
+import connect4.view.ViewFactory
 
-class StartController(private val session: Session): Controller(session), VisitorAwareController {
-    fun reset() {
+class StartController(private val session: Session): Controller(session) {
+    fun control() {
         this.session.reset()
-    }
-
-    fun getBoardColors(): List<Array<Color>> {
-        return this.session.getBoardColors()
-    }
-
-    override fun accept(visitor: ControllersVisitor) {
-        visitor.visit(this)
+        ViewFactory.createStartView().showBanner()
     }
 }

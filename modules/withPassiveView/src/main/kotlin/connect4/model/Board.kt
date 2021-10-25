@@ -11,15 +11,9 @@ class Board(private val rows: Int, private val cols: Int, private val winningMov
     fun reset() {
         (0 until rows).forEach { i ->
             (0 until cols).forEach { j ->
-                cells[Coordinate(i, j)] = AIPlayer(Color.NULL)
+                cells[Coordinate(i, j)] = Player(Color.NULL)
             }
         }
-    }
-
-    fun copy(): Board {
-        val boardCopy = Board(this.rows, this.cols, this.winningMoves)
-        this.cells.forEach(boardCopy::fillCell)
-        return boardCopy
     }
 
     fun getBoardColors(): List<Array<Color>> {

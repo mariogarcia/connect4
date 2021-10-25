@@ -2,16 +2,6 @@ package connect4.model
 
 class Session {
     private val game = Game()
-    private val state = State()
-    private val registry = GameRegistry(game)
-
-    fun getStateValue(): StateValue {
-        return this.state.value
-    }
-
-    fun next() {
-        this.state.next()
-    }
 
     fun getBoardColors(): List<Array<Color>> {
         return this.game.getBoardColors()
@@ -19,12 +9,10 @@ class Session {
 
     fun reset() {
         this.game.reset()
-        this.state.reset()
     }
 
     fun playWithCoordinate(coordinate: Coordinate) {
         this.game.playWithCoordinate(coordinate)
-        this.registry.register()
         this.game.togglePlayer()
     }
 
@@ -38,21 +26,5 @@ class Session {
 
     fun getCurrentPlayer(): Player {
         return this.game.getCurrentPlayer()
-    }
-
-    fun redo() {
-        this.registry.redo()
-    }
-
-    fun isRedoable(): Boolean {
-        return this.registry.isRedoable()
-    }
-
-    fun undo() {
-        this.registry.undo()
-    }
-
-    fun isUndoable(): Boolean {
-        return this.registry.isUndoable()
     }
 }

@@ -18,27 +18,11 @@ enum class Messages(private val message: String) {
 @|green \\___\\___/|_| |_|_| |_|\\___|\\___|\\__|          |_/ |@
 """),
     NEXT_MOVE_QUESTION("Introduce a new move [%s]: "),
-    NEW_GAME_QUESTION("Would you like to play another game ?"),
-    MENU_OPTION_CHOOSE("----- Choose one option -----"),
-    COMMAND_ACTION("Keep playing"),
-    COMMAND_UNDO("Undo movement"),
-    COMMAND_REDO("Redo movement");
-
+    NEW_GAME_QUESTION("Would you like to play another game ?");
 
     companion object {
         fun Messages.format(vararg params: String): String {
             return String.format(this.message, *params)
-        }
-
-        fun nextAISentence(): String {
-            val sentences = Messages::class.java
-                .getResource("/ai_sentences.txt")
-                ?.readText(Charsets.UTF_8)
-                ?.lines()
-                ?.shuffled()
-                ?.first()
-
-            return "All right my turn... @|yellow $sentences |@"
         }
     }
 

@@ -1,12 +1,10 @@
 package connect4.controller
 
 import connect4.model.Session
+import connect4.view.ViewFactory
 
-class ResumeController(private val session: Session): Controller(session), VisitorAwareController {
-    fun reset() {
-        this.session.reset()
-    }
-    override fun accept(visitor: ControllersVisitor) {
-        visitor.visit(this)
+class ResumeController(session: Session): Controller(session) {
+    fun control(): Boolean {
+        return ViewFactory.createResumeView().resume()
     }
 }
