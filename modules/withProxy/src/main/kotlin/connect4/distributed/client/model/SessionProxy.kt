@@ -1,4 +1,4 @@
-package connect4.distributed.server.model
+package connect4.distributed.client.model
 
 import connect4.common.model.Color
 import connect4.common.model.Coordinate
@@ -6,7 +6,7 @@ import connect4.common.model.Player
 import connect4.common.model.StateValue
 import connect4.common.model.Session as CommonSession
 
-class Session: CommonSession {
+class SessionProxy(private val tcpService: TCPService): CommonSession {
     override fun getStateValue(): StateValue {
         TODO("Not yet implemented")
     }
