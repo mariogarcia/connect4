@@ -1,12 +1,28 @@
-package connect4.distributed.client
+package connect4.distributed.server.model
 
 import connect4.common.model.Color
 import connect4.common.model.Coordinate
 import connect4.common.model.Player
+import connect4.common.model.StateValue
 import connect4.common.model.Session as CommonSession
-import connect4.common.controller.PlayController as CommonPlayController
 
-class PlayController(session: CommonSession): CommonPlayController(session) {
+class Session: CommonSession {
+    override fun getStateValue(): StateValue {
+        TODO("Not yet implemented")
+    }
+
+    override fun next() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getBoardColors(): List<Array<Color>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun reset() {
+        TODO("Not yet implemented")
+    }
+
     override fun playWithCoordinate(coordinate: Coordinate) {
         TODO("Not yet implemented")
     }
@@ -19,15 +35,7 @@ class PlayController(session: CommonSession): CommonPlayController(session) {
         TODO("Not yet implemented")
     }
 
-    override fun getRandomCoordinate(): Coordinate {
-        TODO("Not yet implemented")
-    }
-
     override fun getCurrentPlayer(): Player {
-        TODO("Not yet implemented")
-    }
-
-    override fun getBoardSnapshot(): List<Array<Color>> {
         TODO("Not yet implemented")
     }
 
@@ -47,7 +55,4 @@ class PlayController(session: CommonSession): CommonPlayController(session) {
         TODO("Not yet implemented")
     }
 
-    override fun nextState() {
-        TODO("Not yet implemented")
-    }
 }

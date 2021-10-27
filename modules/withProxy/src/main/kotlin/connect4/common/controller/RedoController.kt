@@ -1,7 +1,7 @@
-package connect4.standalone.controller
+package connect4.common.controller
 
 import connect4.common.controller.Controller
-import connect4.standalone.model.Session
+import connect4.common.model.Session
 
 class RedoController(private val session: Session): Controller(session) {
     fun redo() {

@@ -12,50 +12,50 @@ class Session: CommonSession {
         return this.state.value
     }
 
-    fun next() {
+    override fun next() {
         this.state.next()
     }
 
-    fun getBoardColors(): List<Array<Color>> {
+    override fun getBoardColors(): List<Array<Color>> {
         return this.game.getBoardColors()
     }
 
-    fun reset() {
+    override fun reset() {
         this.game.reset()
         this.state.reset()
     }
 
-    fun playWithCoordinate(coordinate: Coordinate) {
+    override fun playWithCoordinate(coordinate: Coordinate) {
         this.game.playWithCoordinate(coordinate)
         this.registry.register()
         this.game.togglePlayer()
     }
 
-    fun isConnect4(): Boolean {
+    override fun isConnect4(): Boolean {
         return this.game.isConnect4()
     }
 
-    fun isValidCoordinate(coordinate: Coordinate): Boolean {
+    override fun isValidCoordinate(coordinate: Coordinate): Boolean {
         return this.game.isValidCoordinate(coordinate)
     }
 
-    fun getCurrentPlayer(): Player {
+    override fun getCurrentPlayer(): Player {
         return this.game.getCurrentPlayer()
     }
 
-    fun redo() {
+    override fun redo() {
         this.registry.redo()
     }
 
-    fun isRedoable(): Boolean {
+    override fun isRedoable(): Boolean {
         return this.registry.isRedoable()
     }
 
-    fun undo() {
+    override fun undo() {
         this.registry.undo()
     }
 
-    fun isUndoable(): Boolean {
+    override fun isUndoable(): Boolean {
         return this.registry.isUndoable()
     }
 }
