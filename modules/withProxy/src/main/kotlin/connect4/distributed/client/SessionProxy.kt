@@ -1,4 +1,4 @@
-package connect4.distributed.client.model
+package connect4.distributed.client
 
 import connect4.common.model.Color
 import connect4.common.model.Coordinate

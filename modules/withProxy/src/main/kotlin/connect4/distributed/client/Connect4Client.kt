@@ -1,7 +1,5 @@
 package connect4.distributed.client
 
-import connect4.distributed.client.controller.Logic
-import connect4.distributed.client.model.TCPService
 import connect4.common.controller.Logic as CommonLogic
 import connect4.common.Connect4 as CommonConnect4
 
