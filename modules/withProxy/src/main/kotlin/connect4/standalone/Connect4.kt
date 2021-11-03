@@ -1,7 +1,5 @@
 package connect4.standalone
 
-import connect4.standalone.controller.Logic
-import connect4.standalone.model.Session
 import connect4.common.Connect4 as CommonConnect4
 import connect4.common.controller.Logic as CommonLogic
 
