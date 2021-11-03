@@ -18,5 +18,5 @@ dependencies {
 }
 
 application {
-    mainClass = 'kconnect4.Connect4'
+    mainClass = 'connect4.standalone.Connect4'
 }
