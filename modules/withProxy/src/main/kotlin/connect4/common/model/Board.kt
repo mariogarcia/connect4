@@ -1,7 +1,7 @@
 package connect4.common.model
 
-abstract class Board(private val rows: Int, private val cols: Int, private val winningMoves: Int) {
-    protected val cells: MutableMap<Coordinate, Player> = mutableMapOf()
+class Board() {
+    private val cells: MutableMap<Coordinate, Player> = mutableMapOf()
     private var lastMove: Coordinate = NullCoordinate()
 
     init {
@@ -9,18 +9,22 @@ abstract class Board(private val rows: Int, private val cols: Int, private val w
     }
 
     fun reset() {
-        (0 until rows).forEach { i ->
-            (0 until cols).forEach { j ->
+        (0 until ROWS).forEach { i ->
+            (0 until COLS).forEach { j ->
                 cells[Coordinate(i, j)] = AIPlayer(Color.NULL)
             }
         }
     }
 
-    abstract fun copy(): Board
+    fun copy(): Board {
+        val boardCopy = Board()
+        this.cells.forEach(this::fillCell)
+        return boardCopy
+    }
 
     fun getBoardColors(): List<Array<Color>> {
-        val colors: Array<Array<Color>> = Array(rows) {
-            Array(cols) {
+        val colors: Array<Array<Color>> = Array(ROWS) {
+            Array(COLS) {
                 Color.NULL
             }
         }
@@ -46,8 +50,8 @@ abstract class Board(private val rows: Int, private val cols: Int, private val w
     }
 
     private fun isWithinBounds(coordinate: Coordinate): Boolean {
-        val rowIsCorrect = coordinate.row >= 0 && coordinate.row < this.rows
-        val colIsCorrect = coordinate.col >= 0 && coordinate.col < this.cols
+        val rowIsCorrect = coordinate.row >= 0 && coordinate.row < ROWS
+        val colIsCorrect = coordinate.col >= 0 && coordinate.col < COLS
 
         return rowIsCorrect && colIsCorrect
     }
@@ -59,9 +63,15 @@ abstract class Board(private val rows: Int, private val cols: Int, private val w
     private fun areCoordinateNeighborsConnect4(coordinate: Coordinate): Boolean {
         return Coordinate.Direction
             .values()
-            .map { direction -> coordinate.getNeighbors(this.winningMoves, direction) }
+            .map { direction -> coordinate.getNeighbors(WINNING_MOVES, direction) }
             .filter { coordinates -> coordinates.all(this::isWithinBounds) }
             .map { coordinates -> coordinates.map { this.cells[it]?.color } }
             .any { colors -> colors.toSet().size == 1 }
+    }
+
+    companion object {
+        const val ROWS = 7
+        const val COLS = 6
+        const val WINNING_MOVES = 4
     }
 }

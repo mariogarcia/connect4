@@ -1,7 +1,7 @@
 package connect4.common.model
 
 class Game {
-    private var board: Board = Connect4Board()
+    private var board: Board = Board()
     private var turn = Turn(board)
 
     fun reset() {

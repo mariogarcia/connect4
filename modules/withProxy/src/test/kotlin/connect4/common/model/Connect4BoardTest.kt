@@ -14,7 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource
 internal class Connect4BoardTest {
     @Test
     fun `given a new board, there should be 7x6 cells with NULL color`() {
-        val board: Board = Connect4Board()
+        val board = Board()
         val rows: List<Array<Color>> = board.getBoardColors()
         assertThat(rows.size, equalTo(7))
         assertThat(rows, everyItem(arrayWithSize(6)))

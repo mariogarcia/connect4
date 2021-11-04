@@ -5,7 +5,7 @@ import org.junit.jupiter.params.converter.TypedArgumentConverter
 
 class Connect4BoardSourceConverter: TypedArgumentConverter<String, Board>(String::class.java, Board::class.java) {
     override fun convert(source: String?): Board {
-        val board = Connect4Board()
+        val board = Board()
         val rows = source
             ?.split("\n")
             ?.map { it.split(",").map(String::trim) }
