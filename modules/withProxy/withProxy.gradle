@@ -13,10 +13,18 @@ dependencies {
     implementation "org.fusesource.jansi:jansi:2.3.4"
     implementation 'de.vandermeer:asciitable:0.3.2'
 
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
-    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+//    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+//    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+
+    testImplementation(platform("org.junit:junit-bom:5.8.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.hamcrest:hamcrest-library:2.1")
 }
 
 application {
     mainClass = 'connect4.standalone.Connect4'
+}
+
+test {
+    useJUnitPlatform()
 }
