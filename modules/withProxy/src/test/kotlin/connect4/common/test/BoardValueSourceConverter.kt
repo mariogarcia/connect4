@@ -3,7 +3,7 @@ package connect4.common.test
 import connect4.common.model.*
 import org.junit.jupiter.params.converter.TypedArgumentConverter
 
-class Connect4BoardSourceConverter: TypedArgumentConverter<String, Board>(String::class.java, Board::class.java) {
+class BoardValueSourceConverter: TypedArgumentConverter<String, Board>(String::class.java, Board::class.java) {
     override fun convert(source: String?): Board {
         val board = Board()
         val rows = source

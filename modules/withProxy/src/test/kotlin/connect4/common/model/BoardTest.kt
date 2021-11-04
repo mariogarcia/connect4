@@ -1,6 +1,6 @@
 package connect4.common.model
 
-import connect4.common.test.Connect4BoardSourceConverter
+import connect4.common.test.BoardValueSourceConverter
 import connect4.common.test.Fast
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
@@ -11,7 +11,7 @@ import org.junit.jupiter.params.converter.ConvertWith
 import org.junit.jupiter.params.provider.ValueSource
 
 @Fast
-internal class Connect4BoardTest {
+internal class BoardTest {
     @Test
     fun `given a new board, there should be 7x6 cells with NULL color`() {
         val board = Board()
@@ -34,7 +34,7 @@ internal class Connect4BoardTest {
         -, -, -, -, -, -        
     """])
     fun `given an empty board, there is no connect4`(
-            @ConvertWith(Connect4BoardSourceConverter::class) board: Board
+            @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
         assertTrue(board.isConnect4())
     }
@@ -50,7 +50,7 @@ internal class Connect4BoardTest {
         -, -, -, -, -, -        
     """])
     fun `given a board, when there is a row with 4 subsequent cells with same color, there is connect4`(
-        @ConvertWith(Connect4BoardSourceConverter::class) board: Board
+        @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
         assertTrue(board.isConnect4())
     }
@@ -66,7 +66,7 @@ internal class Connect4BoardTest {
         -, -, -, -, -, -        
     """])
     fun `given a board, when there is a diagonal cells with same color, there is connect4`(
-            @ConvertWith(Connect4BoardSourceConverter::class) board: Board
+            @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
         assertTrue(board.isConnect4())
     }
@@ -82,7 +82,7 @@ internal class Connect4BoardTest {
         -, -, -, -, -, -        
     """])
     fun `given a board, when there is an inverse diagonal cells with same color, there is connect4`(
-            @ConvertWith(Connect4BoardSourceConverter::class) board: Board
+            @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
         assertTrue(board.isConnect4())
     }
