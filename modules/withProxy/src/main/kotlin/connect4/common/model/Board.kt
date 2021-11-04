@@ -50,14 +50,16 @@ class Board() {
     }
 
     private fun isWithinBounds(coordinate: Coordinate): Boolean {
-        val rowIsCorrect = coordinate.row >= 0 && coordinate.row < ROWS
-        val colIsCorrect = coordinate.col >= 0 && coordinate.col < COLS
-
+        val rowIsCorrect = coordinate.row in 0 until ROWS
+        val colIsCorrect = coordinate.col in 0 until COLS
         return rowIsCorrect && colIsCorrect
     }
 
     fun isConnect4(): Boolean {
-        return this.cells.keys.any(this::areCoordinateNeighborsConnect4)
+        return this.cells
+            .filterNot { it.value.color == Color.NULL }
+            .keys
+            .any(this::areCoordinateNeighborsConnect4)
     }
 
     private fun areCoordinateNeighborsConnect4(coordinate: Coordinate): Boolean {

@@ -4,6 +4,7 @@ import connect4.common.test.BoardValueSourceConverter
 import connect4.common.test.Fast
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -36,7 +37,7 @@ internal class BoardTest {
     fun `given an empty board, there is no connect4`(
             @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
-        assertTrue(board.isConnect4())
+        assertFalse(board.isConnect4())
     }
 
     @ParameterizedTest
@@ -116,6 +117,6 @@ internal class BoardTest {
     fun `given a board, when there are less than 4 subsequent cells with same color, there is NOT connect4`(
             @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
-        assertTrue(board.isConnect4())
+        assertFalse(board.isConnect4())
     }
 }
