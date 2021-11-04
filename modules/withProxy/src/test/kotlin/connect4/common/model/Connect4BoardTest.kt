@@ -7,7 +7,7 @@ import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.Test
 
 @Fast
-class Connect4BoardTest: BoardTest(rows = 7, cols = 6, winningMoves = 4) {
+internal class Connect4BoardTest: BoardTest(rows = 7, cols = 6, winningMoves = 4) {
     @Test
     fun `given a new board, there should be 7x6 cells with NULL color`() {
         val rows: List<Array<Color>> = this.board.getBoardColors()
