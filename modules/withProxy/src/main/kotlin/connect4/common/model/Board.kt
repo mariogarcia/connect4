@@ -1,7 +1,7 @@
 package connect4.common.model
 
-class Board(private val rows: Int, private val cols: Int, private val winningMoves: Int) {
-    private val cells: MutableMap<Coordinate, Player> = mutableMapOf()
+abstract class Board(private val rows: Int, private val cols: Int, private val winningMoves: Int) {
+    protected val cells: MutableMap<Coordinate, Player> = mutableMapOf()
     private var lastMove: Coordinate = NullCoordinate()
 
     init {
@@ -16,11 +16,7 @@ class Board(private val rows: Int, private val cols: Int, private val winningMov
         }
     }
 
-    fun copy(): Board {
-        val boardCopy = Board(this.rows, this.cols, this.winningMoves)
-        this.cells.forEach(boardCopy::fillCell)
-        return boardCopy
-    }
+    abstract fun copy(): Board
 
     fun getBoardColors(): List<Array<Color>> {
         val colors: Array<Array<Color>> = Array(rows) {
@@ -57,11 +53,15 @@ class Board(private val rows: Int, private val cols: Int, private val winningMov
     }
 
     fun isConnect4(): Boolean {
+        return this.cells.keys.any(this::areCoordinateNeighborsConnect4)
+    }
+
+    private fun areCoordinateNeighborsConnect4(coordinate: Coordinate): Boolean {
         return Coordinate.Direction
             .values()
-            .map { direction -> this.lastMove.getNeighbors(this.winningMoves, direction) }
+            .map { direction -> coordinate.getNeighbors(this.winningMoves, direction) }
             .filter { coordinates -> coordinates.all(this::isWithinBounds) }
-            .map { coordinates -> coordinates.map { this.cells[it] } }
+            .map { coordinates -> coordinates.map { this.cells[it]?.color } }
             .any { colors -> colors.toSet().size == 1 }
     }
 }
