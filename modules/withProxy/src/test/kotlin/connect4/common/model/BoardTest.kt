@@ -34,7 +34,7 @@ internal class BoardTest {
         -, -, -, -, -, -
         -, -, -, -, -, -        
     """])
-    fun `given an empty board, there is no connect4`(
+    fun `given an empty board, there is NOT connect4`(
             @ConvertWith(BoardValueSourceConverter::class) board: Board
     ) {
         assertFalse(board.isConnect4())
