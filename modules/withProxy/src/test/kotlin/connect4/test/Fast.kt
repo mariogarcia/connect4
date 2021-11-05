@@ -1,4 +1,4 @@
-package connect4.common.test
+package connect4.test
 
 import org.junit.jupiter.api.Tag
 

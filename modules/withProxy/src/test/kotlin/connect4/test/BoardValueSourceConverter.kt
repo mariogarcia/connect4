@@ -1,4 +1,4 @@
-package connect4.common.test
+package connect4.test
 
 import connect4.common.model.*
 import org.junit.jupiter.params.converter.TypedArgumentConverter

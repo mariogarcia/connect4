@@ -1,7 +1,7 @@
 package connect4.common.model
 
-import connect4.common.test.BoardValueSourceConverter
-import connect4.common.test.Fast
+import connect4.test.BoardValueSourceConverter
+import connect4.test.Fast
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -13,17 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource
 
 @Fast
 internal class BoardTest {
-    @Test
-    fun `given a new board, there should be 7x6 cells with NULL color`() {
-        val board = Board()
-        val rows: List<Array<Color>> = board.getBoardColors()
-        assertThat(rows.size, equalTo(7))
-        assertThat(rows, everyItem(arrayWithSize(6)))
-        assertThat(getCellList(rows), everyItem(`is`(Color.NULL)))
-    }
-
-    private fun getCellList(board: List<Array<Color>>) = board.flatMap { it.toList() }
-
     @ParameterizedTest
     @ValueSource(strings = ["""
         -, -, -, -, -, -

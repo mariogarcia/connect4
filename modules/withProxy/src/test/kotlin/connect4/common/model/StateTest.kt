@@ -3,7 +3,7 @@
  */
 package connect4.common.model
 
-import connect4.common.test.Fast
+import connect4.test.Fast
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
