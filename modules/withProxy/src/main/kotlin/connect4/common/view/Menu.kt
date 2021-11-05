@@ -1,7 +1,7 @@
 package connect4.common.view
 
 
-abstract class Menu {
+abstract class Menu(private val console: Console) {
     private val commands: MutableList<Command> = mutableListOf()
 
     fun addCommand(command: Command) {
@@ -16,10 +16,10 @@ abstract class Menu {
         var option: Int
 
         do {
-            Console.writeLn(Messages.MENU_OPTION_CHOOSE)
-            commandsToShow.forEachIndexed { i: Int, cmd: Command -> Console.writeLn("${i + 1}) ${cmd.getTitle()}") }
+            console.writeLn(Messages.MENU_OPTION_CHOOSE)
+            commandsToShow.forEachIndexed { i: Int, cmd: Command -> console.writeLn("${i + 1}) ${cmd.getTitle()}") }
 
-            option = Console.askInt("> ") - 1
+            option = console.askInt("> ") - 1
             error = !(0 until commands.size).contains(option)
         } while (error)
 

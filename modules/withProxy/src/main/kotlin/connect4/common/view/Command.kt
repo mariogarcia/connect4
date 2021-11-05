@@ -9,9 +9,4 @@ abstract class Command(private val title: String, protected val controller: Play
     fun getTitle(): String {
         return this.title
     }
-
-    fun showBoard() {
-        Console.clear()
-        Console.showTable(controller.getBoardSnapshot())
-    }
 }

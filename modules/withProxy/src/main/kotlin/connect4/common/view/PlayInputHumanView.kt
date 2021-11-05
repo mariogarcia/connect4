@@ -5,13 +5,13 @@ import connect4.common.model.Coordinate
 import connect4.common.view.Messages.Companion.format
 
 class PlayInputHumanView: PlayInputView {
-    override fun getCoordinate(controller: PlayController): Coordinate {
+    override fun getCoordinate(controller: PlayController, console: Console): Coordinate {
         val color = controller.getCurrentPlayer().color
         val question = Messages.NEXT_MOVE_QUESTION.format(color.toString())
         var coordinate: Coordinate
 
         do {
-            coordinate = Console.askCoordinate(question)
+            coordinate = console.askCoordinate(question)
         } while (!controller.isValidCoordinate(coordinate))
 
         return coordinate
