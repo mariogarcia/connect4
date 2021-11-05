@@ -13,38 +13,33 @@ class GameTest {
 
     @Test
     fun `given a new game, the first turn is for player RED`() {
-        with(Game()) {
-            assertEquals(Color.RED, getCurrentPlayer().color)
-        }
+        val game = Game()
+        assertEquals(Color.RED, game.getCurrentPlayer().color)
     }
 
     @Test
     fun `given a new game, when toggling player, the turn is for player BLUE`() {
-        with(Game()) {
-            togglePlayer()
-            assertEquals(Color.BLUE, getCurrentPlayer().color)
-        }
+        val game = Game()
+        game.togglePlayer()
+        assertEquals(Color.BLUE, game.getCurrentPlayer().color)
     }
 
     @Test
     fun `given a game, when asking if an coordinate outside the bounds is valid, it will return false`() {
-        with(Game()) {
-            assertFalse(isValidCoordinate(Coordinate(-1, -1)))
-        }
+        val game = Game()
+        assertFalse(game.isValidCoordinate(Coordinate(-1, -1)))
     }
 
     @Test
     fun `given a game, when asking if a coordinate already used is valid, it will return false`() {
-        with(Game()) {
-            playWithCoordinate(Coordinate(0, 0))
-            assertFalse(isValidCoordinate(Coordinate(0,0)))
-        }
+        val game = Game()
+        game.playWithCoordinate(Coordinate(0, 0))
+        assertFalse(game.isValidCoordinate(Coordinate(0,0)))
     }
 
     @Test
     fun `given a game, when asking if a valid coordinate is valid, it will return true`() {
-        with(Game()) {
-            assertTrue(isValidCoordinate(Coordinate(0,0)))
-        }
+        val game = Game()
+        assertTrue(game.isValidCoordinate(Coordinate(0,0)))
     }
 }
