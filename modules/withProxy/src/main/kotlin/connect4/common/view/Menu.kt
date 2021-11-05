@@ -1,14 +1,13 @@
 package connect4.common.view
 
-
-abstract class Menu(private val console: Console) {
+abstract class Menu {
     private val commands: MutableList<Command> = mutableListOf()
 
     fun addCommand(command: Command) {
         this.commands.add(command)
     }
 
-    open fun execute() {
+    open fun execute(console: Console) {
         val commandsToShow = commands.filter(Command::isActive)
         assert(commandsToShow.isNotEmpty())
 
@@ -23,6 +22,6 @@ abstract class Menu(private val console: Console) {
             error = !(0 until commands.size).contains(option)
         } while (error)
 
-        commandsToShow[option].execute()
+        commandsToShow[option].execute(console)
     }
 }

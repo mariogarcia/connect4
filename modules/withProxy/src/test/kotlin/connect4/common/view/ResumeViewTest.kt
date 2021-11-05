@@ -14,10 +14,10 @@ class ResumeViewTest {
     fun `when the game is over, and the user wants to start again, the view should return true`() {
         val console = Mockito.mock(Console::class.java)
         val controller = Mockito.mock(ResumeController::class.java)
-        val view = ResumeView(console)
+        val view = ResumeView()
 
         `when`(console.askBoolean(anyString())).thenReturn(true)
 
-        assertTrue(view.resume(controller))
+        assertTrue(view.resume(controller, console))
     }
 }

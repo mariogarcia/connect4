@@ -6,19 +6,19 @@ import connect4.common.controller.StartController
 
 class GameView: View {
     private val console = ConsoleFactory.getConsoleInstance()
-    private val startView = StartView(console)
-    private val resumeView = ResumeView(console)
-    private val playView = PlayView(console)
+    private val startView = StartView()
+    private val resumeView = ResumeView()
+    private val playView = PlayView()
 
     override fun visit(startController: StartController) {
-        startView.show(startController)
+        startView.show(startController, console)
     }
 
     override fun visit(playController: PlayController) {
-        playView.interact(playController)
+        playView.interact(playController, console)
     }
 
     override fun visit(resumeController: ResumeController): Boolean {
-        return resumeView.resume(resumeController)
+        return resumeView.resume(resumeController, console)
     }
 }

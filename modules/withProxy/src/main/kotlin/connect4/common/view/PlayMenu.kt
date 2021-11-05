@@ -2,10 +2,10 @@ package connect4.common.view
 
 import connect4.common.controller.PlayController
 
-class PlayMenu(playController: PlayController, console: Console): Menu(console) {
+class PlayMenu(playController: PlayController): Menu() {
     init {
-        this.addCommand(ActionCommand(playController, console))
-        this.addCommand(RedoCommand(playController, console))
-        this.addCommand(UndoCommand(playController, console))
+        this.addCommand(ActionCommand(playController))
+        this.addCommand(RedoCommand(playController))
+        this.addCommand(UndoCommand(playController))
     }
 }

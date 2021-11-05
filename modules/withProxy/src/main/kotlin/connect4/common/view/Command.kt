@@ -4,7 +4,7 @@ import connect4.common.controller.PlayController
 
 abstract class Command(private val title: String, protected val controller: PlayController) {
     abstract fun isActive(): Boolean
-    abstract fun execute()
+    abstract fun execute(console: Console)
 
     fun getTitle(): String {
         return this.title

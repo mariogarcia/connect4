@@ -2,8 +2,8 @@ package connect4.common.view
 
 import connect4.common.controller.ResumeController
 
-class ResumeView(private val console: Console) {
-    fun resume(controller: ResumeController): Boolean {
+class ResumeView {
+    fun resume(controller: ResumeController, console: Console): Boolean {
         val startAllOver = console.askBoolean(Messages.NEW_GAME_QUESTION.toString())
 
         if (startAllOver) {
