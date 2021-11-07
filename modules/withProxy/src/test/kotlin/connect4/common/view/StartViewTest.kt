@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
 
 @View
-class StartViewTest: ViewTest<StartController, StartView>(StartController::class.java, { StartView() }) {
+class StartViewTest: ViewTest<StartController, StartView>() {
+    override fun createView(): StartView = StartView()
+    override fun getControllerClass(): Class<StartController> = StartController::class.java
+
     @Test
     fun `when start view is shown, controller is reset`() {
         view.show(controller, console)

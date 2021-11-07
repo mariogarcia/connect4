@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
 
 @View
-class ResumeViewTest: ViewTest<ResumeController, ResumeView>(ResumeController::class.java, { ResumeView() }) {
+class ResumeViewTest: ViewTest<ResumeController, ResumeView>() {
+    override fun getControllerClass(): Class<ResumeController> = ResumeController::class.java
+    override fun createView(): ResumeView = ResumeView()
+    
     @Test
     fun `when the game is over, and the user wants to start again, the view should return true`() {
         `when`(console.askBoolean(anyString())).thenReturn(true)
