@@ -10,6 +10,7 @@ class SessionTest {
     fun `given a new session, there should be 7x6 cells with NULL color`() {
         val session = Session()
         val rows: List<Array<Color>> = session.getBoardColors()
+
         assertThat(rows.size, equalTo(7))
         assertThat(rows, everyItem(arrayWithSize(6)))
         assertThat(getCellList(rows), everyItem(`is`(Color.NULL)))

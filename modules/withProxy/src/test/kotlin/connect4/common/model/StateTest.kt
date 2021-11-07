@@ -6,45 +6,48 @@ package connect4.common.model
 import connect4.test.Fast
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 @Fast
 internal class StateTest {
+    private var state = State()
+
+    @BeforeEach
+    fun init() {
+        this.state = State()
+    }
+
     @Test
     fun `given a new state, when no calls done, expect value to be START`() {
-        val state = State()
-        assertEquals(StateValue.START, state.value)
+        assertEquals(StateValue.START, this.state.value)
     }
 
     @Test
     fun `given a new state, when next() called, expect value to be PLAY`() {
-        val state = State()
-        state.next()
-        assertEquals(StateValue.PLAY, state.value)
+        this.state.next()
+        assertEquals(StateValue.PLAY, this.state.value)
     }
 
     @Test
     fun `given a PLAY state, when next() called, expect value to be RESUME`() {
-        val state = State()
-        state.next()
-        state.next()
-        assertEquals(StateValue.RESUME, state.value)
+        this.state.next()
+        this.state.next()
+        assertEquals(StateValue.RESUME, this.state.value)
     }
 
     @Test
     fun `given a RESUME state, when next() called, expect to fail`() {
-        val state = State()
-        state.next()
-        state.next()
-        assertThrows(ArrayIndexOutOfBoundsException::class.java) { state.next() }
+        this.state.next()
+        this.state.next()
+        assertThrows(ArrayIndexOutOfBoundsException::class.java) { this.state.next() }
     }
 
     @Test
     fun `given a RESUME state, when reset() called, expect value to be START`() {
-        val state = State()
-        state.next()
-        state.next()
-        state.reset()
-        assertEquals(StateValue.START, state.value)
+        this.state.next()
+        this.state.next()
+        this.state.reset()
+        assertEquals(StateValue.START, this.state.value)
     }
 }

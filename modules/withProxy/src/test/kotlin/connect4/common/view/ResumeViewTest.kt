@@ -2,22 +2,31 @@ package connect4.common.view
 
 import connect4.common.controller.ResumeController
 import connect4.test.View
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.anyString
+import org.mockito.Mockito.*
 
 @View
-class ResumeViewTest {
+class ResumeViewTest: ViewTest<ResumeController, ResumeView>(ResumeController::class.java, { ResumeView() }) {
     @Test
     fun `when the game is over, and the user wants to start again, the view should return true`() {
-        val console = Mockito.mock(Console::class.java)
-        val controller = Mockito.mock(ResumeController::class.java)
-        val view = ResumeView()
-
         `when`(console.askBoolean(anyString())).thenReturn(true)
 
         assertTrue(view.resume(controller, console))
+
+        verify(console, times(1)).askBoolean(anyString())
+        verify(controller, times(1)).reset()
+    }
+
+    @Test
+    fun `when the game is over, and the user doesn't want to go on, the view should return false`() {
+        `when`(console.askBoolean(anyString())).thenReturn(false)
+
+        assertFalse(view.resume(controller, console))
+
+        verify(console, times(1)).askBoolean(anyString())
+        verify(console, times(1)).writeLn(Messages.GOOD_BYE)
+        verify(controller, times(1)).nextState()
     }
 }
