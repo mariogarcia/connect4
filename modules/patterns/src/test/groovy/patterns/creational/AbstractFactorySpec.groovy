@@ -7,15 +7,15 @@ import patterns.creational.abstractFactory.VehicleFactory
 import spock.lang.Specification
 
 class AbstractFactorySpec extends Specification {
-    def "create vehicles for different customers"() {
-        when: "asking the contractor to get the proper factory"
+    def "when using different vehicle factories we should get different type of vehicles"() {
+        when:
         VehicleContractor contractor = new VehicleContractor()
         VehicleFactory vehicleFactory = contractor.getFactoryByCustomerType(new Customer(type))
 
-        then: "the provided factory should build the expected type of vehicle"
+        then:
         vehicleFactory.create().toString() == expectedVehicle
 
-        where: "possible customers and expected results are"
+        where:
         type                  | expectedVehicle
         CustomerType.CIVIL    | "Suv"
         CustomerType.MILITARY | "Tank"
