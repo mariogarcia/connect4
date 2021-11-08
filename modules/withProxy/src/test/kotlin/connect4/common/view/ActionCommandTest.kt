@@ -6,15 +6,14 @@ import connect4.common.model.Color
 import connect4.common.model.Coordinate
 import connect4.common.model.HumanPlayer
 import connect4.test.MockitoHelper.anyObject
-import org.junit.jupiter.api.BeforeEach
+import connect4.test.MockInitializer
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.*
-import org.mockito.MockitoAnnotations.openMocks
 
-class ActionCommandTest {
+class ActionCommandTest: MockInitializer() {
     @Mock
     private lateinit var controller: PlayController
 
@@ -23,11 +22,6 @@ class ActionCommandTest {
 
     @InjectMocks
     private lateinit var command: ActionCommand
-
-    @BeforeEach
-    fun init() {
-        openMocks(this)
-    }
 
     @Test
     fun `when the current player is human, the player is asked for a coordinate`() {

@@ -2,14 +2,24 @@ package connect4.common.view
 
 import connect4.common.controller.StartController
 import connect4.test.MockitoHelper.anyObject
+import connect4.test.MockInitializer
 import connect4.test.View
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
+import org.mockito.InjectMocks
+import org.mockito.Mock
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 
 @View
-class StartViewTest: ViewTest<StartController, StartView>() {
-    override fun createView(): StartView = StartView()
-    override fun getControllerClass(): Class<StartController> = StartController::class.java
+class StartViewTest: MockInitializer() {
+    @Mock
+    private lateinit var console: Console
+
+    @Mock
+    private lateinit var controller: StartController
+
+    @InjectMocks
+    private lateinit var view: StartView
 
     @Test
     fun `when start view is shown, controller is reset`() {
