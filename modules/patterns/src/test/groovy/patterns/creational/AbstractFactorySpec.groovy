@@ -10,14 +10,14 @@ class AbstractFactorySpec extends Specification {
     def "create vehicles for different customers"() {
         when: "asking the contractor to get the proper factory"
         VehicleContractor contractor = new VehicleContractor()
-        VehicleFactory vehicleFactory = contractor.getFactoryByCustomerType(customer)
+        VehicleFactory vehicleFactory = contractor.getFactoryByCustomerType(new Customer(type))
 
         then: "the provided factory should build the expected type of vehicle"
         vehicleFactory.create().toString() == expectedVehicle
 
         where: "possible customers and expected results are"
-        customer                            | expectedVehicle
-        new Customer(CustomerType.CIVIL)    | "Suv"
-        new Customer(CustomerType.MILITARY) | "Tank"
+        type                  | expectedVehicle
+        CustomerType.CIVIL    | "Suv"
+        CustomerType.MILITARY | "Tank"
     }
 }

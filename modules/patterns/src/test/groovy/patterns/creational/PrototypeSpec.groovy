@@ -8,45 +8,42 @@ import spock.lang.Specification
 
 class PrototypeSpec extends Specification {
     def "check cloned boards don't share cells"() {
-        given: "an initial board"
-        Player player1 = new HumanPlayer();
-        Player player2 = new HumanPlayer();
-        Board board = new Board(3, 3)
-                .addMove(player1, new Coordinate(0, 0))
-                .addMove(player2, new Coordinate(0, 1))
-                .addMove(player1, new Coordinate(1, 0));
+        given:
+        def (player1, player2) = [new HumanPlayer()] * 2
+        Board board = create3x3BoardWithPlayers(player1, player2)
 
-        when: "cloning the board and adding a few more moves"
-        Board clone = board
-                .copy()
-                .addMove(player1, new Coordinate(0, 2))
-                .addMove(player2, new Coordinate(1, 1));
+        when:
+        Board clone = board.copy()
+            .addMove(player1, new Coordinate(0, 2))
+            .addMove(player2, new Coordinate(1, 1));
 
-        then: "both boards should differ"
+        then:
         board.filledCells.size() == 3
         clone.filledCells.size() == 5
     }
 
     def "check cloned boards don't share cells when resetting source"() {
-        given: "an initial board"
-        Player player1 = new HumanPlayer();
-        Player player2 = new HumanPlayer();
+        given:
+        def (player1, player2) = [new HumanPlayer()] * 2
+        Board board = create3x3BoardWithPlayers(player1, player2)
 
-        Board board = new Board(3, 3)
-                .addMove(player1, new Coordinate(0, 0))
-                .addMove(player2, new Coordinate(0, 1))
-                .addMove(player1, new Coordinate(1, 0));
-
-        when: "cloning the board and adding a few more moves"
+        when:
         Board clone = board.copy()
             .addMove(player1, new Coordinate(0, 2))
             .addMove(player2, new Coordinate(1, 1));
 
-        and: "resetting source board"
+        and:
         board.reset()
 
-        then: "both boards should differ"
+        then:
         board.filledCells.size() == 0
         clone.filledCells.size() == 5
+    }
+
+    private static Board create3x3BoardWithPlayers(Player player1, Player player2) {
+        return new Board(3, 3)
+            .addMove(player1, new Coordinate(0, 0))
+            .addMove(player2, new Coordinate(0, 1))
+            .addMove(player1, new Coordinate(1, 0));
     }
 }
