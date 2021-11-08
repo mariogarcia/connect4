@@ -24,21 +24,48 @@ class ResumeViewTest: MockInitializer() {
     @Test
     fun `when the game is over, and the user wants to start again, the view should return true`() {
         `when`(console.askBoolean(anyString())).thenReturn(true)
-
         assertTrue(view.resume(controller, console))
+    }
 
+    @Test
+    fun `when the game is over, the user should answer true, to start again`() {
+        `when`(console.askBoolean(anyString())).thenReturn(true)
+        view.resume(controller, console)
         verify(console, times(1)).askBoolean(anyString())
+    }
+
+    @Test
+    fun `when the game is over, and the user answers true to start again, the controller resets the game`() {
+        `when`(console.askBoolean(anyString())).thenReturn(true)
+        view.resume(controller, console)
         verify(controller, times(1)).reset()
     }
 
     @Test
-    fun `when the game is over, and the user doesn't want to go on, the view should return false`() {
+    fun `when the game is over, and the user doesn't want to repeat, the view should return false`() {
         `when`(console.askBoolean(anyString())).thenReturn(false)
-
         assertFalse(view.resume(controller, console))
-
         verify(console, times(1)).askBoolean(anyString())
+    }
+
+    @Test
+    fun `when the game is over, if the user doesn't want to contnue should answer false`() {
+        `when`(console.askBoolean(anyString())).thenReturn(false)
+        view.resume(controller, console)
+        verify(console, times(1)).askBoolean(anyString())
+    }
+
+    @Test
+    fun `when the game is over, and the user chooses not to continue, the game ends with a goodbye message`() {
+        `when`(console.askBoolean(anyString())).thenReturn(false)
+        view.resume(controller, console)
         verify(console, times(1)).writeLn(Messages.GOOD_BYE)
+    }
+
+    @Test
+    fun `when the game is over, and the user answers to not continue, the state changes`() {
+        `when`(console.askBoolean(anyString())).thenReturn(false)
+        view.resume(controller, console)
         verify(controller, times(1)).nextState()
     }
 }
