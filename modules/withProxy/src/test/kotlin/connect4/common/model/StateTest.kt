@@ -31,23 +31,25 @@ internal class StateTest {
 
     @Test
     fun `given a PLAY state, when next() called, expect value to be RESUME`() {
-        this.state.next()
-        this.state.next()
+        this.goToLastStateValue()
         assertEquals(StateValue.RESUME, this.state.value)
     }
 
     @Test
     fun `given a RESUME state, when next() called, expect to fail`() {
-        this.state.next()
-        this.state.next()
+        this.goToLastStateValue()
         assertThrows(ArrayIndexOutOfBoundsException::class.java) { this.state.next() }
     }
 
     @Test
     fun `given a RESUME state, when reset() called, expect value to be START`() {
-        this.state.next()
-        this.state.next()
+        this.goToLastStateValue()
         this.state.reset()
         assertEquals(StateValue.START, this.state.value)
+    }
+
+    private fun goToLastStateValue() {
+        this.state.next()
+        this.state.next()
     }
 }
