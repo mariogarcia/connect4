@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 @Fast
 class GameTest {
-    private var game: Game = Game()
+    private lateinit var game: Game
 
     @BeforeEach
     fun init() {

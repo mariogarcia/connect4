@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 @Fast
 internal class StateTest {
-    private var state = State()
+    private lateinit var state: State
 
     @BeforeEach
     fun init() {
