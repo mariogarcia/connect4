@@ -21,7 +21,7 @@ class StartViewTest: MockInitializer() {
     private lateinit var view: StartView
 
     @Test
-    fun `when start view is shown, a certain interactions are expected`() {
+    fun `when start view is shown, a greetings message and the initial board are shown`() {
         view.show(controller, console)
 
         with(inOrder(console, controller)) {
